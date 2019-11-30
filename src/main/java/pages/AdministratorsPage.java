@@ -1,3 +1,4 @@
+/*
 package pages;
 
 import org.openqa.selenium.WebDriver;
@@ -8,3 +9,4 @@ public class AdministratorsPage extends ParentPage {
         super(webDriver);
     }
 }
+*/
