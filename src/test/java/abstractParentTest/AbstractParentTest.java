@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.DashboardPage;
+import pages.EmployeesPage;
 import pages.LoginPage;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +18,7 @@ public class AbstractParentTest {
     WebDriver webDriver;
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
+    protected EmployeesPage employeesPage;
 
 
     @Before
@@ -28,6 +30,8 @@ public class AbstractParentTest {
 
         loginPage = new LoginPage(webDriver);
         dashboardPage = new DashboardPage(webDriver);
+        employeesPage = new EmployeesPage(webDriver);
+
     }
 
     private WebDriver driverInit() throws Exception {
