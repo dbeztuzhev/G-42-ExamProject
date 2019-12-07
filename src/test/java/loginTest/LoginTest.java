@@ -3,42 +3,49 @@ package loginTest;
 import abstractParentTest.AbstractParentTest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+
+@RunWith(Parameterized.class)
 
 public class LoginTest extends AbstractParentTest {
+    String login, pass;
+
+    public LoginTest(String login, String pass) {
+        this.login = login;
+        this.pass = pass;
+    }
+
+    @Parameterized.Parameters(name = "Parameters are *{0} and {1}")
+    public static Collection testData() {
+        return Arrays.asList(new Object[][]{
+                        {"Admin@hideez.com", "admin"},
+                        {"ADMIN@HIDEEZ.COM", "admin"},  //LoginUppercase
+                        {"admin@hideez.com", "admin"},  //LoginLowercase
+                }
+
+        );
+    }
+
 
     @Test
-    public void validLogin() {
+    public void validTest() {
         loginPage.openPage();
         loginPage.checkCurrentUrl();
         Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
-        loginPage.fillingLoginFormAndSubmitIt("Admin@hideez.com", "admin");
+        loginPage.enterLoginInToInputLogin(login);
+        loginPage.enterPassInToInputPassword(pass);
         dashboardPage.checkCurrentUrl();
         Assert.assertEquals(dashboardPage.getTitle(), "Dashboard - HES");
         checkExpectedResult("Dashboard Avatar is not present", dashboardPage.isAvatarDisplayed());
     }
 
-    @Test
-    public void validLoginUppercase() {
-        loginPage.openPage();
-        loginPage.checkCurrentUrl();
-        Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
-        loginPage.fillingLoginFormAndSubmitIt("ADMIN@HIDEEZ.COM", "admin");
-        dashboardPage.checkCurrentUrl();
-        Assert.assertEquals(dashboardPage.getTitle(), "Dashboard - HES");
-        checkExpectedResult("Dashboard Avatar is not present", dashboardPage.isAvatarDisplayed());
-    }
+    // negative tests
 
-    @Test
-    public void validLoginLowercase() {
-        loginPage.openPage();
-        loginPage.checkCurrentUrl();
-        Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
-        loginPage.fillingLoginFormAndSubmitIt("admin@hideez.com", "admin");
-        dashboardPage.checkCurrentUrl();
-        Assert.assertEquals(dashboardPage.getTitle(), "Dashboard - HES");
-        checkExpectedResult("Dashboard Avatar is not present", dashboardPage.isAvatarDisplayed());
-    }
-// negative tests
 
     @Test
     public void emptyData() {
@@ -46,6 +53,21 @@ public class LoginTest extends AbstractParentTest {
         loginPage.checkCurrentUrl();
         Assert.assertTrue("ButtonLogIn is displayed", loginPage.isPageLoaded());
         loginPage.fillingLoginFormAndSubmitIt("", "");
+        loginPage.checkCurrentUrl();
+        Assert.assertEquals(loginPage.getTitle(), "Log in - HES");
+        Assert.assertEquals("The Email field is required.", loginPage.getErrorMessageTextEmail());
+        Assert.assertEquals("The Password field is required.", loginPage.getErrorMessageTextPassword());
+        Assert.assertEquals("The Email field is required.", loginPage.getErrorMessageTextOverFieldsEmail());
+        Assert.assertEquals("The Password field is required.", loginPage.getErrorMessageTextOverFieldsPassword());
+
+    }
+
+    @Test
+    public void emptyDataWithoutEnterData() {
+        loginPage.openPage();
+        loginPage.checkCurrentUrl();
+        Assert.assertTrue("ButtonLogIn is displayed", loginPage.isPageLoaded());
+        loginPage.clickOnButtonLogIn();
         loginPage.checkCurrentUrl();
         Assert.assertEquals(loginPage.getTitle(), "Log in - HES");
         Assert.assertEquals("The Email field is required.", loginPage.getErrorMessageTextEmail());

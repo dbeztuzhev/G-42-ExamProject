@@ -54,7 +54,6 @@ public class LoginPage extends ParentPage {
         actionsWithOurElements.enterTextInInput(inputLogin, login);
     }
 
-
     public void enterPassInToInputPassword(String password) {
         actionsWithOurElements.enterTextInInput(inputPassword, password);
     }
