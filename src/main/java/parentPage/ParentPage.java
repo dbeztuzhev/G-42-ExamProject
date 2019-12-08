@@ -23,7 +23,6 @@ public class ParentPage {
         this.webDriver = webDriver;
 
         baseUrl = configProperties.base_url();
-        //PageFactory.initElements(webDriver, this);
         PageFactory.initElements(
                 new HtmlElementDecorator(
                         new HtmlElementLocatorFactory(webDriver))
@@ -42,11 +41,6 @@ public class ParentPage {
             Assert.fail("Cfn not get url" + e);
         }
     }
-
-
-    //public String getCurrentUrl() {
-        //return webDriver.getCurrentUrl();
-    //}
 
     public String getTitle() {
         return webDriver.getTitle();

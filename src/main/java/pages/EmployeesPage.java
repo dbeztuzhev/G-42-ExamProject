@@ -187,7 +187,19 @@ public class EmployeesPage extends ParentPage {
     public void confirmAccountUserPassword(String confirmPassword) {
         actionsWithOurElements.enterTextInInput(confirmAccountUserPassword, confirmPassword);
     }
-    public void checkIsAvatarPresent() {
-        Assert.assertTrue("Avatar is not displayed", isAvatarDisplayed());
+    public void checkIsFullNamePresent() {
+        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("Bob Brown"));
+    }
+    public void checkIsEmailPresent() {
+        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("brown@gmail.com"));
+    }
+    public void checkIsWindowsAccountPresent() {
+        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
+    }
+    public void checkIsDeviceIdPresent() {
+        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
+    }
+    public void checkIsWorkstationIdPresent() {
+        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
     }
 }

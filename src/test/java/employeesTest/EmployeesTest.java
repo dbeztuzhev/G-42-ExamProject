@@ -42,16 +42,19 @@ public class EmployeesTest extends AbstractParentTest {
         //Windows Account
         employeesPage.clickOnAccountTypeList();
         employeesPage.selectMicrosoftAccountType();
-        employeesPage.enterAccountUserNameInToInputField("");
-        employeesPage.enterAccountUserPasswordInToInputField("");
-        employeesPage.confirmAccountUserPassword("");
+        employeesPage.enterAccountUserNameInToInputField("TestUnlockAccount");
+        employeesPage.enterAccountUserPasswordInToInputField("123007");
+        employeesPage.confirmAccountUserPassword("123007");
         employeesPage.clickOnNextButton();
 
         //Overview
-        //Assert.assertTrue(webDriver.getPageSource().contains("First Name"), "Page is not displayed");
+        employeesPage.checkIsFullNamePresent();
+        employeesPage.checkIsEmailPresent();
+        employeesPage.checkIsWindowsAccountPresent();
+        employeesPage.checkIsDeviceIdPresent();
+        employeesPage.checkIsWorkstationIdPresent();
 
-
-
+        //
     }
 
 }
