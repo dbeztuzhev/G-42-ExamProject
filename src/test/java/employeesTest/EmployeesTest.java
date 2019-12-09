@@ -15,6 +15,11 @@ public class EmployeesTest extends AbstractParentTest {
         employeesPage.checkCurrentUrl();
         employeesPage.clickOnCreateEmployeeButton();
 
+
+        //WIZARD
+        //----------START WIZARD---------------------------------
+
+
         //Profile
         employeesPage.enterFirstNameInToInputField("Bob");
         employeesPage.enterLastNameInToInputField("Brown");
@@ -53,8 +58,42 @@ public class EmployeesTest extends AbstractParentTest {
         employeesPage.checkIsWindowsAccountPresent();
         employeesPage.checkIsDeviceIdPresent();
         employeesPage.checkIsWorkstationIdPresent();
+        employeesPage.clickOnNextButton();
 
-        //
+        //-------END WIZARD-------------------------
+
+
+        //Edit Employee
+        employeesPage.clickOnSearchbox();
+        employeesPage.enterLastNameInToInputField("Brown");
+        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnEditEmployeeLink();
+        employeesPage.editFirstName("1Bob");
+        employeesPage.editLastName("1Brown");
+        employeesPage.editEmail("1brown@gmail.com");
+        employeesPage.editPhoneNumber("+38-095-edited");
+        employeesPage.clickOnCompanyList();
+        employeesPage.clickOnCompany();
+        employeesPage.clickOnDepartmentList();
+        employeesPage.clickOnDepartmentList();
+        employeesPage.clickOnDepartment();
+        employeesPage.clickOnPositionList();
+        employeesPage.clickOnPosition();
+        employeesPage.clickOnSaveButton();
+
+        //Delete Device
+        employeesPage.enterLastNameInToInputField("1Brown");
+        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDetailsLink();
+        employeesPage.clickOnRemoveDeviceButton();
+        employeesPage.clickOnDeleteDeviceButton();
+
+        //Delete Employee
+        employeesPage.leftMenu.clickOnMenuEmployees();
+        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDeleteEmployeeLink();
+        employeesPage.clickOnDeleteEmployeeButton();
+
     }
 
 }

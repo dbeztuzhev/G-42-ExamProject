@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.pageElements.LeftMenu;
 import parentPage.ParentPage;
 
 public class EmployeesPage extends ParentPage {
@@ -86,6 +87,64 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='col']//*[@class='border rounded py-2 px-3']")
     private WebElement employeeBlock;
 
+    @FindBy(xpath = ".//*[@class='dropdown-toggle']")
+    private WebElement dropdownMenu;
+
+    @FindBy(xpath = ".//*[@data-title='Edit employee']")
+    private WebElement editEmployeeLink;
+
+    @FindBy(xpath = ".//input[@id='Employee_FirstName']")
+    private WebElement editFirstName;
+
+    @FindBy(xpath = ".//input[@id='Employee_LastName']")
+    private WebElement editLastName;
+
+    @FindBy(xpath = ".//input[@id='Employee_Email']")
+    private WebElement editEmail;
+
+    @FindBy(xpath = ".//input[@id='Employee_PhoneNumber']")
+    private WebElement editPhoneNumber;
+
+    @FindBy(xpath = ".//*[@id='companies']")
+    private WebElement companyList;
+
+    @FindBy(xpath = ".//*[@id='companies']//option[text() ='Hideez']")
+    private WebElement selectCompany;
+
+    @FindBy(xpath = ".//*[@id='departments']")
+    private WebElement departmentList;
+
+    @FindBy(xpath = ".//*[@id='departments']/option[text() ='HR']")
+    private WebElement selectDepartment;
+
+    @FindBy(xpath = ".//*[@id='Employee_PositionId']")
+    private WebElement positionList;
+
+    @FindBy(xpath = ".//*[@id='Employee_PositionId']/option[text() ='HR']")
+    private WebElement selectPosition;
+
+    @FindBy(xpath = ".//input[@value='Save']")
+    private WebElement saveButton;
+
+    @FindBy(xpath = ".//input[@id='searchbox']")
+    private WebElement clickOnSearch;
+
+    @FindBy(xpath = ".//img[@src='/svg/action/details.svg']")
+    private WebElement detailsLink;
+
+    @FindBy(xpath = ".")
+    private WebElement removeDeviceButton;
+
+    @FindBy(xpath = ".")
+    private WebElement deleteDeviceButton;
+
+    @FindBy(xpath = ".")
+    private WebElement deleteEmployeeLink;
+
+    @FindBy(xpath = ".")
+    private WebElement deleteEmployeeButton;
+
+    public LeftMenu leftMenu;
 
     public EmployeesPage(WebDriver webDriver) {
         super(webDriver, "/Employees");
@@ -93,7 +152,6 @@ public class EmployeesPage extends ParentPage {
 
     public void clickOnCreateEmployeeButton() {
         actionsWithOurElements.clickOnElement(buttonCreateEmployee);
-
     }
 
     public void enterFirstNameInToInputField(String employeeFirstName) {
@@ -137,7 +195,6 @@ public class EmployeesPage extends ParentPage {
 
     public void clickOnAddPositionButton() {
         actionsWithOurElements.clickOnElement(addPosition);
-
     }
 
     public void enterPositionInToInputField(String namePosition) {
@@ -187,19 +244,102 @@ public class EmployeesPage extends ParentPage {
     public void confirmAccountUserPassword(String confirmPassword) {
         actionsWithOurElements.enterTextInInput(confirmAccountUserPassword, confirmPassword);
     }
+
     public void checkIsFullNamePresent() {
         Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("Bob Brown"));
     }
+
     public void checkIsEmailPresent() {
         Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("brown@gmail.com"));
     }
+
     public void checkIsWindowsAccountPresent() {
         Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
     }
+
     public void checkIsDeviceIdPresent() {
         Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
     }
+
     public void checkIsWorkstationIdPresent() {
         Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
     }
+
+    public void clickOnDropdownMenu() {
+        actionsWithOurElements.clickOnElement(dropdownMenu);
+    }
+
+    public void clickOnEditEmployeeLink() {
+        actionsWithOurElements.clickOnElement(editEmployeeLink);
+    }
+
+    public void editFirstName(String firstName) {
+        actionsWithOurElements.enterTextInInput(editFirstName, firstName);
+    }
+
+    public void editLastName(String lastName) {
+        actionsWithOurElements.enterTextInInput(editLastName, lastName);
+    }
+
+    public void editEmail(String emailField) {
+        actionsWithOurElements.enterTextInInput(editEmail, emailField);
+    }
+
+    public void editPhoneNumber(String phoneNumberField) {
+        actionsWithOurElements.enterTextInInput(editPhoneNumber, phoneNumberField);
+    }
+
+    public void clickOnCompanyList() {
+        actionsWithOurElements.clickOnElement(companyList);
+    }
+
+    public void clickOnCompany() {
+        actionsWithOurElements.clickOnElement(selectCompany);
+    }
+
+    public void clickOnDepartmentList() {
+        actionsWithOurElements.clickOnElement(departmentList);
+    }
+
+    public void clickOnDepartment() {
+        actionsWithOurElements.clickOnElement(selectDepartment);
+    }
+
+    public void clickOnPositionList() {
+        actionsWithOurElements.clickOnElement(positionList);
+    }
+
+    public void clickOnPosition() {
+        actionsWithOurElements.clickOnElement(selectPosition);
+    }
+
+    public void clickOnSaveButton() {
+        actionsWithOurElements.clickOnElement(saveButton);
+    }
+
+    public void clickOnSearchbox() {
+        actionsWithOurElements.clickOnElement(clickOnSearch);
+    }
+
+    public void clickOnDetailsLink() {
+        actionsWithOurElements.clickOnElement(detailsLink);
+    }
+
+    public void clickOnRemoveDeviceButton() {
+        actionsWithOurElements.clickOnElement(removeDeviceButton);
+    }
+
+    public void clickOnDeleteDeviceButton() {
+        actionsWithOurElements.clickOnElement(deleteDeviceButton);
+    }
+
+    public void clickOnDeleteEmployeeLink() {
+        actionsWithOurElements.clickOnElement(deleteEmployeeLink);
+    }
+
+    public void clickOnDeleteEmployeeButton() {
+        actionsWithOurElements.clickOnElement(deleteEmployeeButton);
+    }
+
+
 }
