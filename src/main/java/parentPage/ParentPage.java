@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 public class ParentPage {
     protected WebDriver webDriver;
@@ -21,7 +23,10 @@ public class ParentPage {
         this.webDriver = webDriver;
 
         baseUrl = configProperties.base_url();
-        PageFactory.initElements(webDriver, this);
+        PageFactory.initElements(
+                new HtmlElementDecorator(
+                        new HtmlElementLocatorFactory(webDriver))
+                ,this);
         actionsWithOurElements = new ActionsWithOurElements(webDriver);
         expectedUrl = baseUrl + partUrl;
     }
@@ -36,11 +41,6 @@ public class ParentPage {
             Assert.fail("Cfn not get url" + e);
         }
     }
-
-
-    //public String getCurrentUrl() {
-        //return webDriver.getCurrentUrl();
-    //}
 
     public String getTitle() {
         return webDriver.getTitle();

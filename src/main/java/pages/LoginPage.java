@@ -44,7 +44,7 @@ public class LoginPage extends ParentPage {
 
     public void openPage() {
         try {
-            webDriver.get("http://internaldemo.hideez.com");
+            webDriver.get("http://publicdemo.hideez.com");
         } catch (Exception e) {
             Assert.fail("can not work with browser");
         }
@@ -53,7 +53,6 @@ public class LoginPage extends ParentPage {
     public void enterLoginInToInputLogin(String login) {
         actionsWithOurElements.enterTextInInput(inputLogin, login);
     }
-
 
     public void enterPassInToInputPassword(String password) {
         actionsWithOurElements.enterTextInInput(inputPassword, password);
