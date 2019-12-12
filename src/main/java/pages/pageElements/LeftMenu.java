@@ -1,5 +1,6 @@
 package pages.pageElements;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Link;
 
@@ -11,7 +12,7 @@ public class LeftMenu extends CommonActionWithElements {
     private Link menuDashboard;
 
     @FindBy(xpath = ".//img[@class='icon-employees i-sidebar']")
-    private Link menuEmployees;
+    private WebElement menuEmployees;
 
     @FindBy(xpath = ".//img[@class='icon-computers i-sidebar']")
     private Link menuWorkstations;
@@ -51,7 +52,6 @@ public class LeftMenu extends CommonActionWithElements {
 
     @FindBy(xpath = ".//a[@href='/Settings/Positions']")
     private Link subMenuPositions;
-
 
 
     public void clickOnMenuDashboard() {

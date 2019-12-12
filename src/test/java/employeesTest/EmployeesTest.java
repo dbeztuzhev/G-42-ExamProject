@@ -1,8 +1,8 @@
 package employeesTest;
 
 import abstractParentTest.AbstractParentTest;
-import org.junit.Assert;
 import org.junit.Test;
+
 
 public class EmployeesTest extends AbstractParentTest {
 
@@ -54,7 +54,6 @@ public class EmployeesTest extends AbstractParentTest {
 
         //Overview
         employeesPage.checkIsFullNamePresent();
-        employeesPage.checkIsEmailPresent();
         employeesPage.checkIsWindowsAccountPresent();
         employeesPage.checkIsDeviceIdPresent();
         employeesPage.checkIsWorkstationIdPresent();
@@ -64,9 +63,7 @@ public class EmployeesTest extends AbstractParentTest {
 
 
         //Edit Employee
-        employeesPage.clickOnSearchbox();
-        employeesPage.enterLastNameInToInputField("Brown");
-        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDropdownMenuEmployee();
         employeesPage.clickOnEditEmployeeLink();
         employeesPage.editFirstName("1Bob");
         employeesPage.editLastName("1Brown");
@@ -81,18 +78,42 @@ public class EmployeesTest extends AbstractParentTest {
         employeesPage.clickOnPosition();
         employeesPage.clickOnSaveButton();
 
+        //Delete Personal Account
+        employeesPage.clickOnDropdownMenuEmployee();
+        employeesPage.clickOnDetailsLink();
+        employeesPage.clickOnDropdownMenuAccount();
+        employeesPage.clickOnDeleteMenuAccount();
+        employeesPage.clickOnDeleteButton();
+
+
         //Delete Device
-        employeesPage.enterLastNameInToInputField("1Brown");
-        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDropdownMenuEmployee();
         employeesPage.clickOnDetailsLink();
         employeesPage.clickOnRemoveDeviceButton();
-        employeesPage.clickOnDeleteDeviceButton();
+        employeesPage.clickOnDeleteButton();
 
         //Delete Employee
         employeesPage.leftMenu.clickOnMenuEmployees();
-        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDropdownMenuEmployee();
         employeesPage.clickOnDeleteEmployeeLink();
-        employeesPage.clickOnDeleteEmployeeButton();
+        employeesPage.clickOnDeleteButton();
+
+        //Delete Company
+        employeesPage.leftMenu.clickOnMenuSettings();
+        employeesPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.clickOnDropdownMenuDepartment();
+        orgStructurePage.clickOnDeleteMenuDepartment();
+        orgStructurePage.clickOnDeleteButton();
+
+        //Delete Department
+        orgStructurePage.clickOnDropdownMenuCompany();
+        orgStructurePage.clickOnDeleteMenuCompany();
+        orgStructurePage.clickOnDeleteButton();
+
+        //Delete Position
+        orgStructurePage.leftMenu.clickOnMenuSettings();
+        orgStructurePage.leftMenu.clickOnSubMenuPositions();
+
 
     }
 

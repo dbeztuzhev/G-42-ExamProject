@@ -11,6 +11,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.DashboardPage;
 import pages.EmployeesPage;
 import pages.LoginPage;
+import pages.OrgStructurePage;
+
 import java.util.concurrent.TimeUnit;
 
 public class AbstractParentTest {
@@ -19,7 +21,7 @@ public class AbstractParentTest {
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
     protected EmployeesPage employeesPage;
-
+    protected OrgStructurePage orgStructurePage;
 
     @Before
     public void setUp() throws Exception {
@@ -31,7 +33,7 @@ public class AbstractParentTest {
         loginPage = new LoginPage(webDriver);
         dashboardPage = new DashboardPage(webDriver);
         employeesPage = new EmployeesPage(webDriver);
-
+        orgStructurePage = new OrgStructurePage(webDriver);
     }
 
     private WebDriver driverInit() throws Exception {
@@ -60,4 +62,5 @@ public class AbstractParentTest {
     protected void checkExpectedResult(String message, boolean actualResult) {
         Assert.assertEquals(message, true, actualResult);
     }
+
 }

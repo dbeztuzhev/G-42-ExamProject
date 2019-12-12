@@ -87,9 +87,6 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='col']//*[@class='border rounded py-2 px-3']")
     private WebElement employeeBlock;
 
-    @FindBy(xpath = ".//*[@class='dropdown-toggle']")
-    private WebElement dropdownMenu;
-
     @FindBy(xpath = ".//*[@data-title='Edit employee']")
     private WebElement editEmployeeLink;
 
@@ -126,23 +123,26 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@value='Save']")
     private WebElement saveButton;
 
-    @FindBy(xpath = ".//input[@id='searchbox']")
-    private WebElement clickOnSearch;
+    @FindBy(xpath = ".//tr[@class ='row-dblclick even']//*[@id = 'dropdownMenuLink']")
+    private WebElement dropdownMenuEmployee;
 
-    @FindBy(xpath = ".//img[@src='/svg/action/details.svg']")
-    private WebElement detailsLink;
+    @FindBy(xpath = ".//tr[@class ='row-dblclick even']//img[@src = '/svg/action/details.svg']")
+    private WebElement detailsMenuEmployee;
 
-    @FindBy(xpath = ".")
+    @FindBy(xpath = ".//tr[@class ='odd']//*[@id = 'dropdownMenuLink']")
+    private WebElement dropdownMenuAccount;
+
+    @FindBy(xpath = ".//tr[@class ='odd']//a[@data-title='Delete account']")
+    private WebElement deleteMenuAccount;
+
+    @FindBy(xpath = ".//input[@value='Delete']")
+    private WebElement deleteButton;
+
+    @FindBy(xpath = ".//*[@data-action='DeleteDevice']")
     private WebElement removeDeviceButton;
 
-    @FindBy(xpath = ".")
-    private WebElement deleteDeviceButton;
-
-    @FindBy(xpath = ".")
+    @FindBy(xpath = ".//tr[@class ='row-dblclick even']//a[@data-title = 'Delete employee']")
     private WebElement deleteEmployeeLink;
-
-    @FindBy(xpath = ".")
-    private WebElement deleteEmployeeButton;
 
     public LeftMenu leftMenu;
 
@@ -172,7 +172,6 @@ public class EmployeesPage extends ParentPage {
 
     public void clickOnAddCompanyButton() {
         actionsWithOurElements.clickOnElement(addCompany);
-
     }
 
     public void enterCompanyInToInputField(String nameCompany) {
@@ -181,12 +180,10 @@ public class EmployeesPage extends ParentPage {
 
     public void clickOnCreateOrgStructureButton() {
         actionsWithOurElements.clickOnElement(buttonCreateOrgStructure);
-
     }
 
     public void clickOnAddDepartmentButton() {
         actionsWithOurElements.clickOnElement(addDepartment);
-
     }
 
     public void enterDepartmentInToInputField(String nameDepartment) {
@@ -246,27 +243,23 @@ public class EmployeesPage extends ParentPage {
     }
 
     public void checkIsFullNamePresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("Bob Brown"));
-    }
-
-    public void checkIsEmailPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("brown@gmail.com"));
+        Assert.assertTrue("Added fullname is not displayed", webDriver.getPageSource().contains("Bob Brown"));
     }
 
     public void checkIsWindowsAccountPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
+        Assert.assertTrue("Added account is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
     }
 
     public void checkIsDeviceIdPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
+        Assert.assertTrue("Added device is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
     }
 
     public void checkIsWorkstationIdPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
+        Assert.assertTrue("Added workstation is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
     }
 
-    public void clickOnDropdownMenu() {
-        actionsWithOurElements.clickOnElement(dropdownMenu);
+    public void clickOnDropdownMenuEmployee() {
+        actionsWithOurElements.clickOnElement(dropdownMenuEmployee);
     }
 
     public void clickOnEditEmployeeLink() {
@@ -317,28 +310,28 @@ public class EmployeesPage extends ParentPage {
         actionsWithOurElements.clickOnElement(saveButton);
     }
 
-    public void clickOnSearchbox() {
-        actionsWithOurElements.clickOnElement(clickOnSearch);
+    public void clickOnDeleteMenuAccount() {
+        actionsWithOurElements.clickOnElement(deleteMenuAccount);
     }
 
     public void clickOnDetailsLink() {
-        actionsWithOurElements.clickOnElement(detailsLink);
+        actionsWithOurElements.clickOnElement(detailsMenuEmployee);
     }
 
     public void clickOnRemoveDeviceButton() {
         actionsWithOurElements.clickOnElement(removeDeviceButton);
     }
 
-    public void clickOnDeleteDeviceButton() {
-        actionsWithOurElements.clickOnElement(deleteDeviceButton);
+    public void clickOnDeleteButton() {
+        actionsWithOurElements.clickOnElement(deleteButton);
     }
 
     public void clickOnDeleteEmployeeLink() {
         actionsWithOurElements.clickOnElement(deleteEmployeeLink);
     }
 
-    public void clickOnDeleteEmployeeButton() {
-        actionsWithOurElements.clickOnElement(deleteEmployeeButton);
+    public void clickOnDropdownMenuAccount() {
+        actionsWithOurElements.clickOnElement(dropdownMenuAccount);
     }
 
 
