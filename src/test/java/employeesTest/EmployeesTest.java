@@ -87,8 +87,6 @@ public class EmployeesTest extends AbstractParentTest {
 
 
         //Delete Device
-        employeesPage.clickOnDropdownMenuEmployee();
-        employeesPage.clickOnDetailsLink();
         employeesPage.clickOnRemoveDeviceButton();
         employeesPage.clickOnDeleteButton();
 

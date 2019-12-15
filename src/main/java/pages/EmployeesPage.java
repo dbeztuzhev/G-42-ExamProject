@@ -96,7 +96,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@id='Employee_LastName']")
     private WebElement editLastName;
 
-    @FindBy(xpath = ".//input[@id='Employee_Email']")
+    @FindBy(xpath = ".//input[@id='email']")
     private WebElement editEmail;
 
     @FindBy(xpath = ".//input[@id='Employee_PhoneNumber']")
@@ -111,7 +111,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='departments']")
     private WebElement departmentList;
 
-    @FindBy(xpath = ".//*[@id='departments']/option[text() ='HR']")
+    @FindBy(xpath = ".//*[@id='departments']/option[text() ='PR']")
     private WebElement selectDepartment;
 
     @FindBy(xpath = ".//*[@id='Employee_PositionId']")
@@ -123,10 +123,10 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@value='Save']")
     private WebElement saveButton;
 
-    @FindBy(xpath = ".//tr[@class ='row-dblclick even']//*[@id = 'dropdownMenuLink']")
+    @FindBy(xpath = ".//a[@id='dropdownMenuLink']")
     private WebElement dropdownMenuEmployee;
 
-    @FindBy(xpath = ".//tr[@class ='row-dblclick even']//img[@src = '/svg/action/details.svg']")
+    @FindBy(xpath = ".//img[@src='/svg/action/details.svg']")
     private WebElement detailsMenuEmployee;
 
     @FindBy(xpath = ".//tr[@class ='odd']//*[@id = 'dropdownMenuLink']")
@@ -138,10 +138,10 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@value='Delete']")
     private WebElement deleteButton;
 
-    @FindBy(xpath = ".//*[@data-action='DeleteDevice']")
+    @FindBy(xpath = ".//img[@src='/svg/action/delete.svg']")
     private WebElement removeDeviceButton;
 
-    @FindBy(xpath = ".//tr[@class ='row-dblclick even']//a[@data-title = 'Delete employee']")
+    @FindBy(xpath = ".//a[@data-title = 'Delete employee']")
     private WebElement deleteEmployeeLink;
 
     public LeftMenu leftMenu;
