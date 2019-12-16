@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import parentPage.ParentPage;
+import io.qameta.allure.Step;
+
 
 public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
@@ -41,7 +43,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//li[text()='The Email field is not a valid e-mail address.']")
     private WebElement errorMessageOverFieldsNotValidLogin;
 
-
+    @Step
     public void openPage() {
         try {
             webDriver.get("http://publicdemo.hideez.com");
@@ -49,51 +51,51 @@ public class LoginPage extends ParentPage {
             Assert.fail("can not work with browser");
         }
     }
-
+    @Step
     public void enterLoginInToInputLogin(String login) {
         actionsWithOurElements.enterTextInInput(inputLogin, login);
     }
-
+    @Step
     public void enterPassInToInputPassword(String password) {
         actionsWithOurElements.enterTextInInput(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogIn() {
         actionsWithOurElements.clickOnElement(loginButton);
     }
-
+    @Step
     public boolean isPageLoaded() {
         return loginButton.isDisplayed();
     }
-
+    @Step
     public String getErrorMessageTextEmail() {
         return errorMessageEmail.getText();
     }
-
+    @Step
     public String getErrorMessageTextPassword() {
         return errorMessagePassword.getText();
     }
-
+    @Step
     public String getErrorMessageTextOverFieldsEmail() {
         return errorMessageOverFieldsEmail.getText();
     }
-
+    @Step
     public String getErrorMessageTextOverFieldsPassword() {
         return errorMessageOverFieldsPassword.getText();
     }
-
+    @Step
     public String getErrorMessageTextInvalidLogin() {
         return errorMessageInvalidLogin.getText();
     }
-
+    @Step
     public String getErrorMessageTextNotValidLogin() {
         return errorMessageNotValidLogin.getText();
     }
-
+    @Step
     public String getErrorMessageTextOverFieldsNotValidLogin() {
         return errorMessageNotValidLogin.getText();
     }
-
+    @Step
     public void fillingLoginFormAndSubmitIt(String login, String pass) {
         openPage();
         enterLoginInToInputLogin(login);

@@ -21,11 +21,12 @@ public class OrgStructurePage extends ParentPage {
     @FindBy(xpath = ".//input[@value='Delete']")
     private WebElement deleteButton;
 
-    @FindBy(xpath = ".//div[@class='row align-items-center m-1'][1]/div[@class='col-auto p-1'][2]/div[@class='dropdown no-arrow']//a[@id='dropdownMenuLink']//img//@src")
+    @FindBy(xpath = ".//div[@class='row align-items-center m-1'][1]//a[@id='dropdownMenuLink']//img[@src='/svg/action/more.svg']")
     private WebElement dropdownMenuCompany;
 
-    @FindBy(xpath = "..//div[@class='d-flex']/div[@class='d-flex flex-column custom-main']/div[@class='custom-content p-4']/div[@class='row align-items-center m-1'][1]/div[@class='col-auto p-1'][2]/div[@class='dropdown no-arrow show']/div[@class='dropdown-menu dropdown-menu-left shadow show']/a[@class='dropdown-item open-modal-dialog'][2]")
+    @FindBy(xpath = ".//div[@class='dropdown-menu dropdown-menu-left shadow show']//img[@src='/svg/action/delete.svg']")
     private WebElement deleteMenuCompany;
+
 
     public LeftMenu leftMenu;
 
@@ -59,6 +60,11 @@ public class OrgStructurePage extends ParentPage {
 
     public void clickOnDeleteMenuCompany() {
         actionsWithOurElements.clickOnElement(deleteMenuCompany);
+    }
+
+
+    public void checkIsCompanyIsNotPresent() {
+        Assert.assertTrue("Deleted Company is present", webDriver.getPageSource().contains("Hideez"));
     }
 
 }

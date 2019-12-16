@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +9,17 @@ import parentPage.ParentPage;
 
 public class PositionsPage extends ParentPage {
 
-    @FindBy(xpath = ".//div[@class='d-flex']/div[@class='d-flex flex-column custom-main']/div[@class='custom-content p-4']/div[@id='positions_wrapper']/div[@class='row'][2]/div[@class='col-sm-12']/table[@id='positions']/tbody/tr[@class='odd'][2]/td[3]/div[@class='dropdown no-arrow']/a[@id='dropdownMenuLink']/img/@src")
+    @FindBy(xpath = ".//tr[@class='odd'][2]//a[@id='dropdownMenuLink']//img[@src='/svg/action/more.svg']")
     private WebElement dropdownMenuPosition;
 
-    @FindBy(xpath = ".//tr[@class ='odd']//a[@data-title='Delete account']")
+    @FindBy(xpath = ".//tr[@class ='odd'][2]//a[@data-title='Delete position']")
     private WebElement deleteMenuPosition;
+
+    @FindBy(xpath = ".//input[@value ='Delete']")
+    private WebElement deleteButton;
+
+    @FindBy(xpath = ".//input[@id ='searchbox']")
+    private WebElement enterSearchPosition;
 
     public LeftMenu leftMenu;
 
@@ -26,6 +33,17 @@ public class PositionsPage extends ParentPage {
 
     public void clickOnDeleteMenuPosition() {
         actionsWithOurElements.clickOnElement(deleteMenuPosition);
+    }
+
+    public void clickOnDeleteButton() {
+        actionsWithOurElements.clickOnElement(deleteButton);
+    }
+
+    public void enterPositionInToSearchField(String searchPosition) {
+        actionsWithOurElements.enterTextInInput(enterSearchPosition, searchPosition);    }
+
+    public void checkIsPositionIsNotPresent() {
+        Assert.assertTrue("Deleted Position is present", webDriver.getPageSource().contains("No matching records found"));
     }
 
 }
