@@ -42,7 +42,7 @@ public class LeftMenu extends CommonActionWithElements {
     private Link menuSettings;
 
     @FindBy(xpath = ".//a[@href='/Settings/Administrators']")
-    private Link subMenuAdminisrtators;
+    private Link subMenuAdministrators;
 
     @FindBy(xpath = ".//a[@href='/Settings/DeviceAccessProfiles']")
     private Link subMenuDevAccessProfiles;
@@ -98,8 +98,8 @@ public class LeftMenu extends CommonActionWithElements {
         actionsWithOurElements.clickOnElement(menuSettings);
     }
 
-    public void clickOnSubMenuAdminisrtators() {
-        actionsWithOurElements.clickOnElement(subMenuAdminisrtators);
+    public void clickOnSubMenuAdministrators() {
+        actionsWithOurElements.clickOnElement(subMenuAdministrators);
     }
 
     public void clickOnSubMenuDevAccessProfiles() {

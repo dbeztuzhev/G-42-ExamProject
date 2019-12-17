@@ -150,190 +150,235 @@ public class EmployeesPage extends ParentPage {
     public EmployeesPage(WebDriver webDriver) {
         super(webDriver, "/Employees");
     }
+
     @Step
     public void clickOnCreateEmployeeButton() {
         actionsWithOurElements.clickOnElement(buttonCreateEmployee);
     }
+
     @Step
     public void enterFirstNameInToInputField(String employeeFirstName) {
         actionsWithOurElements.enterTextInInput(enterFirstName, employeeFirstName);
     }
+
     @Step
     public void enterLastNameInToInputField(String employeeLastName) {
         actionsWithOurElements.enterTextInInput(enterLastName, employeeLastName);
     }
+
     @Step
     public void enterEmailInToInputField(String employeeEmail) {
         actionsWithOurElements.enterTextInInput(enterEmail, employeeEmail);
     }
+
     @Step
     public void enterPhoneInToInputField(String employeePhone) {
         actionsWithOurElements.enterTextInInput(enterPhone, employeePhone);
     }
+
     @Step
     public void clickOnAddCompanyButton() {
         actionsWithOurElements.clickOnElement(addCompany);
     }
+
     @Step
     public void enterCompanyInToInputField(String nameCompany) {
         actionsWithOurElements.enterTextInInput(enterNameCompany, nameCompany);
     }
+
     @Step
     public void clickOnCreateOrgStructureButton() {
         actionsWithOurElements.clickOnElement(buttonCreateOrgStructure);
     }
+
     @Step
     public void clickOnAddDepartmentButton() {
         actionsWithOurElements.clickOnElement(addDepartment);
     }
+
     @Step
     public void enterDepartmentInToInputField(String nameDepartment) {
         actionsWithOurElements.enterTextInInput(enterNameDepartment, nameDepartment);
     }
+
     @Step
     public void clickOnAddPositionButton() {
         actionsWithOurElements.clickOnElement(addPosition);
     }
+
     @Step
     public void enterPositionInToInputField(String namePosition) {
         actionsWithOurElements.enterTextInInput(enterNamePosition, namePosition);
     }
+
     @Step
     public void clickOnNextButton() {
         actionsWithOurElements.clickOnElement(buttonNext);
     }
+
     @Step
     public void clickOnDeviceList() {
         actionsWithOurElements.clickOnElement(deviceList);
     }
+
     @Step
     public void clickOnDeviceId() {
         actionsWithOurElements.clickOnElement(addDeviceId);
     }
+
     @Step
     public void proximityCheckbox(String expectedState) {
         actionsWithOurElements.setStateToCheckBox(proximityCheckbox, expectedState);
     }
+
     @Step
     public void clickOnWorkstationList() {
         actionsWithOurElements.clickOnElement(workstationList);
     }
+
     @Step
     public void clickOnWorkstation() {
         actionsWithOurElements.clickOnElement(selectWorkstation);
     }
+
     @Step
     public void clickOnAccountTypeList() {
         actionsWithOurElements.clickOnElement(accountTypeList);
     }
+
     @Step
     public void selectMicrosoftAccountType() {
         actionsWithOurElements.clickOnElement(selectMicrosoftAccountType);
     }
+
     @Step
     public void enterAccountUserNameInToInputField(String userName) {
         actionsWithOurElements.enterTextInInput(enterAccountUserName, userName);
     }
+
     @Step
     public void enterAccountUserPasswordInToInputField(String userPassword) {
         actionsWithOurElements.enterTextInInput(enterAccountUserPassword, userPassword);
     }
+
     @Step
     public void confirmAccountUserPassword(String confirmPassword) {
         actionsWithOurElements.enterTextInInput(confirmAccountUserPassword, confirmPassword);
     }
+
     @Step
     public void checkIsFullNamePresent() {
         Assert.assertTrue("Added fullname is not displayed", webDriver.getPageSource().contains("Bob Brown"));
     }
+
     @Step
     public void checkIsWindowsAccountPresent() {
         Assert.assertTrue("Added account is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
     }
+
     @Step
     public void checkIsDeviceIdPresent() {
         Assert.assertTrue("Added device is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
     }
+
     @Step
     public void checkIsWorkstationIdPresent() {
         Assert.assertTrue("Added workstation is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
     }
+
     @Step
     public void clickOnDropdownMenuEmployee() {
         actionsWithOurElements.clickOnElement(dropdownMenuEmployee);
     }
+
     @Step
     public void clickOnEditEmployeeLink() {
         actionsWithOurElements.clickOnElement(editEmployeeLink);
     }
+
     @Step
     public void editFirstName(String firstName) {
         actionsWithOurElements.enterTextInInput(editFirstName, firstName);
     }
+
     @Step
     public void editLastName(String lastName) {
         actionsWithOurElements.enterTextInInput(editLastName, lastName);
     }
+
     @Step
     public void editEmail(String emailField) {
         actionsWithOurElements.enterTextInInput(editEmail, emailField);
     }
+
     @Step
     public void editPhoneNumber(String phoneNumberField) {
         actionsWithOurElements.enterTextInInput(editPhoneNumber, phoneNumberField);
     }
+
     @Step
     public void clickOnCompanyList() {
         actionsWithOurElements.clickOnElement(companyList);
     }
+
     @Step
     public void clickOnCompany() {
         actionsWithOurElements.clickOnElement(selectCompany);
     }
+
     @Step
     public void clickOnDepartmentList() {
         actionsWithOurElements.clickOnElement(departmentList);
     }
+
     @Step
     public void clickOnDepartment() {
         actionsWithOurElements.clickOnElement(selectDepartment);
     }
+
     @Step
     public void clickOnPositionList() {
         actionsWithOurElements.clickOnElement(positionList);
     }
+
     @Step
     public void clickOnPosition() {
         actionsWithOurElements.clickOnElement(selectPosition);
     }
+
     @Step
     public void clickOnSaveButton() {
         actionsWithOurElements.clickOnElement(saveButton);
     }
+
     @Step
     public void clickOnDeleteMenuAccount() {
         actionsWithOurElements.clickOnElement(deleteMenuAccount);
     }
+
     @Step
     public void clickOnDetailsLink() {
         actionsWithOurElements.clickOnElement(detailsMenuEmployee);
     }
+
     @Step
     public void clickOnRemoveDeviceButton() {
         actionsWithOurElements.clickOnElement(removeDeviceButton);
     }
+
     @Step
     public void clickOnDeleteButton() {
         actionsWithOurElements.clickOnElement(deleteButton);
     }
+
     @Step
     public void clickOnDeleteEmployeeLink() {
         actionsWithOurElements.clickOnElement(deleteEmployeeLink);
     }
+
     @Step
     public void clickOnDropdownMenuAccount() {
         actionsWithOurElements.clickOnElement(dropdownMenuAccount);
     }
-
 
 }

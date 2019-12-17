@@ -29,6 +29,7 @@ public class AbstractParentTest {
     protected EmployeesPage employeesPage;
     protected OrgStructurePage orgStructurePage;
     protected PositionsPage positionsPage;
+    protected SharedAccountsPage sharedAccountsPage;
 
 
     protected static ConfigProperties configProperties =
@@ -49,6 +50,7 @@ public class AbstractParentTest {
         employeesPage = new EmployeesPage(webDriver);
         orgStructurePage = new OrgStructurePage(webDriver);
         positionsPage = new PositionsPage(webDriver);
+        sharedAccountsPage = new SharedAccountsPage(webDriver);
     }
 
     private WebDriver driverInit() throws Exception {
