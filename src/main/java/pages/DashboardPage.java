@@ -7,10 +7,12 @@ import org.openqa.selenium.support.FindBy;
 import pages.pageElements.LeftMenu;
 import parentPage.ParentPage;
 
+
 public class DashboardPage extends ParentPage {
 
     @FindBy(xpath = ".//li[@class='breadcrumb-item active']")
     private WebElement dashboardAvatar;
+
 
     public LeftMenu leftMenu;
 

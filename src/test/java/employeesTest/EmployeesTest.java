@@ -1,10 +1,22 @@
 package employeesTest;
 
 import abstractParentTest.AbstractParentTest;
-import org.junit.Assert;
 import org.junit.Test;
+import io.qameta.allure.*;
+
+
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 
 public class EmployeesTest extends AbstractParentTest {
+
+    @Description("Some detailed test description")
+    @Story("Base support for bdd annotations")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
 
     @Test
 
@@ -54,7 +66,6 @@ public class EmployeesTest extends AbstractParentTest {
 
         //Overview
         employeesPage.checkIsFullNamePresent();
-        employeesPage.checkIsEmailPresent();
         employeesPage.checkIsWindowsAccountPresent();
         employeesPage.checkIsDeviceIdPresent();
         employeesPage.checkIsWorkstationIdPresent();
@@ -64,9 +75,7 @@ public class EmployeesTest extends AbstractParentTest {
 
 
         //Edit Employee
-        employeesPage.clickOnSearchbox();
-        employeesPage.enterLastNameInToInputField("Brown");
-        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDropdownMenuEmployee();
         employeesPage.clickOnEditEmployeeLink();
         employeesPage.editFirstName("1Bob");
         employeesPage.editLastName("1Brown");
@@ -81,18 +90,51 @@ public class EmployeesTest extends AbstractParentTest {
         employeesPage.clickOnPosition();
         employeesPage.clickOnSaveButton();
 
-        //Delete Device
-        employeesPage.enterLastNameInToInputField("1Brown");
-        employeesPage.clickOnDropdownMenu();
+        //Delete Personal Account
+        employeesPage.clickOnDropdownMenuEmployee();
         employeesPage.clickOnDetailsLink();
+        employeesPage.clickOnDropdownMenuAccount();
+        employeesPage.clickOnDeleteMenuAccount();
+        employeesPage.clickOnDeleteButton();
+
+
+        //Delete Device
         employeesPage.clickOnRemoveDeviceButton();
-        employeesPage.clickOnDeleteDeviceButton();
+        employeesPage.clickOnDeleteButton();
 
         //Delete Employee
+        employeesPage.leftMenu.clickOnMenuDashboard();
         employeesPage.leftMenu.clickOnMenuEmployees();
-        employeesPage.clickOnDropdownMenu();
+        employeesPage.clickOnDropdownMenuEmployee();
         employeesPage.clickOnDeleteEmployeeLink();
-        employeesPage.clickOnDeleteEmployeeButton();
+        employeesPage.clickOnDeleteButton();
+
+        //Delete Company
+        employeesPage.leftMenu.clickOnMenuSettings();
+        employeesPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.clickOnDropdownMenuDepartment();
+        orgStructurePage.clickOnDeleteMenuDepartment();
+        orgStructurePage.clickOnDeleteButton();
+
+        //Delete Department
+        employeesPage.leftMenu.clickOnMenuSettings();
+        employeesPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.clickOnDropdownMenuCompany();
+        orgStructurePage.clickOnDeleteMenuCompany();
+        orgStructurePage.clickOnDeleteButton();
+
+        //Delete Position
+        orgStructurePage.leftMenu.clickOnMenuSettings();
+        orgStructurePage.leftMenu.clickOnSubMenuPositions();
+        positionsPage.clickOnDropdownMenuPosition();
+        positionsPage.clickOnDeleteMenuPosition();
+        positionsPage.clickOnDeleteButton();
+
+        positionsPage.enterPositionInToSearchField("PRManager");
+        positionsPage.checkIsPositionIsNotPresent();
+        positionsPage.leftMenu.clickOnMenuSettings();
+        positionsPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.checkIsCompanyIsNotPresent();
 
     }
 

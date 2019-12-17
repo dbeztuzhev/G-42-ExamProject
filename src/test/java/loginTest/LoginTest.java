@@ -5,10 +5,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
+import io.qameta.allure.*;
 import java.util.Arrays;
 import java.util.Collection;
 
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 
 @RunWith(Parameterized.class)
 
@@ -31,6 +33,15 @@ public class LoginTest extends AbstractParentTest {
 
         );
     }
+
+
+    @Description("Some detailed test description")
+    @Story("Base support for bdd annotations")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
 
     @Test
     public void validTest() {

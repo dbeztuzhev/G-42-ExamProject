@@ -9,7 +9,7 @@ public class DashboardTest extends AbstractParentTest {
         loginPage.fillingLoginFormAndSubmitIt("admin@hideez.com", "admin");
         dashboardPage.checkCurrentUrl();
         dashboardPage.checkIsDashboardPagePresent();
-        dashboardPage.leftMenu.clickOnMenuEmployees();
+
 
 
     }

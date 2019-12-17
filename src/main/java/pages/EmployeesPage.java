@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.pageElements.LeftMenu;
 import parentPage.ParentPage;
+import io.qameta.allure.Step;
 
 public class EmployeesPage extends ParentPage {
 
@@ -87,9 +88,6 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='col']//*[@class='border rounded py-2 px-3']")
     private WebElement employeeBlock;
 
-    @FindBy(xpath = ".//*[@class='dropdown-toggle']")
-    private WebElement dropdownMenu;
-
     @FindBy(xpath = ".//*[@data-title='Edit employee']")
     private WebElement editEmployeeLink;
 
@@ -99,7 +97,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@id='Employee_LastName']")
     private WebElement editLastName;
 
-    @FindBy(xpath = ".//input[@id='Employee_Email']")
+    @FindBy(xpath = ".//input[@id='email']")
     private WebElement editEmail;
 
     @FindBy(xpath = ".//input[@id='Employee_PhoneNumber']")
@@ -114,7 +112,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='departments']")
     private WebElement departmentList;
 
-    @FindBy(xpath = ".//*[@id='departments']/option[text() ='HR']")
+    @FindBy(xpath = ".//*[@id='departments']/option[text() ='PR']")
     private WebElement selectDepartment;
 
     @FindBy(xpath = ".//*[@id='Employee_PositionId']")
@@ -126,23 +124,26 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@value='Save']")
     private WebElement saveButton;
 
-    @FindBy(xpath = ".//input[@id='searchbox']")
-    private WebElement clickOnSearch;
+    @FindBy(xpath = ".//a[@id='dropdownMenuLink']")
+    private WebElement dropdownMenuEmployee;
 
     @FindBy(xpath = ".//img[@src='/svg/action/details.svg']")
-    private WebElement detailsLink;
+    private WebElement detailsMenuEmployee;
 
-    @FindBy(xpath = ".")
+    @FindBy(xpath = ".//tr[@class ='odd']//*[@id = 'dropdownMenuLink']")
+    private WebElement dropdownMenuAccount;
+
+    @FindBy(xpath = ".//tr[@class ='odd']//a[@data-title='Delete account']")
+    private WebElement deleteMenuAccount;
+
+    @FindBy(xpath = ".//input[@value='Delete']")
+    private WebElement deleteButton;
+
+    @FindBy(xpath = ".//img[@src='/svg/action/delete.svg']")
     private WebElement removeDeviceButton;
 
-    @FindBy(xpath = ".")
-    private WebElement deleteDeviceButton;
-
-    @FindBy(xpath = ".")
+    @FindBy(xpath = ".//a[@data-title = 'Delete employee']")
     private WebElement deleteEmployeeLink;
-
-    @FindBy(xpath = ".")
-    private WebElement deleteEmployeeButton;
 
     public LeftMenu leftMenu;
 
@@ -150,196 +151,234 @@ public class EmployeesPage extends ParentPage {
         super(webDriver, "/Employees");
     }
 
+    @Step
     public void clickOnCreateEmployeeButton() {
         actionsWithOurElements.clickOnElement(buttonCreateEmployee);
     }
 
+    @Step
     public void enterFirstNameInToInputField(String employeeFirstName) {
         actionsWithOurElements.enterTextInInput(enterFirstName, employeeFirstName);
     }
 
+    @Step
     public void enterLastNameInToInputField(String employeeLastName) {
         actionsWithOurElements.enterTextInInput(enterLastName, employeeLastName);
     }
 
+    @Step
     public void enterEmailInToInputField(String employeeEmail) {
         actionsWithOurElements.enterTextInInput(enterEmail, employeeEmail);
     }
 
+    @Step
     public void enterPhoneInToInputField(String employeePhone) {
         actionsWithOurElements.enterTextInInput(enterPhone, employeePhone);
     }
 
+    @Step
     public void clickOnAddCompanyButton() {
         actionsWithOurElements.clickOnElement(addCompany);
-
     }
 
+    @Step
     public void enterCompanyInToInputField(String nameCompany) {
         actionsWithOurElements.enterTextInInput(enterNameCompany, nameCompany);
     }
 
+    @Step
     public void clickOnCreateOrgStructureButton() {
         actionsWithOurElements.clickOnElement(buttonCreateOrgStructure);
-
     }
 
+    @Step
     public void clickOnAddDepartmentButton() {
         actionsWithOurElements.clickOnElement(addDepartment);
-
     }
 
+    @Step
     public void enterDepartmentInToInputField(String nameDepartment) {
         actionsWithOurElements.enterTextInInput(enterNameDepartment, nameDepartment);
     }
 
+    @Step
     public void clickOnAddPositionButton() {
         actionsWithOurElements.clickOnElement(addPosition);
     }
 
+    @Step
     public void enterPositionInToInputField(String namePosition) {
         actionsWithOurElements.enterTextInInput(enterNamePosition, namePosition);
     }
 
+    @Step
     public void clickOnNextButton() {
         actionsWithOurElements.clickOnElement(buttonNext);
     }
 
+    @Step
     public void clickOnDeviceList() {
         actionsWithOurElements.clickOnElement(deviceList);
     }
 
+    @Step
     public void clickOnDeviceId() {
         actionsWithOurElements.clickOnElement(addDeviceId);
     }
 
+    @Step
     public void proximityCheckbox(String expectedState) {
         actionsWithOurElements.setStateToCheckBox(proximityCheckbox, expectedState);
     }
 
+    @Step
     public void clickOnWorkstationList() {
         actionsWithOurElements.clickOnElement(workstationList);
     }
 
+    @Step
     public void clickOnWorkstation() {
         actionsWithOurElements.clickOnElement(selectWorkstation);
     }
 
+    @Step
     public void clickOnAccountTypeList() {
         actionsWithOurElements.clickOnElement(accountTypeList);
     }
 
+    @Step
     public void selectMicrosoftAccountType() {
         actionsWithOurElements.clickOnElement(selectMicrosoftAccountType);
     }
 
+    @Step
     public void enterAccountUserNameInToInputField(String userName) {
         actionsWithOurElements.enterTextInInput(enterAccountUserName, userName);
     }
 
+    @Step
     public void enterAccountUserPasswordInToInputField(String userPassword) {
         actionsWithOurElements.enterTextInInput(enterAccountUserPassword, userPassword);
     }
 
+    @Step
     public void confirmAccountUserPassword(String confirmPassword) {
         actionsWithOurElements.enterTextInInput(confirmAccountUserPassword, confirmPassword);
     }
 
+    @Step
     public void checkIsFullNamePresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("Bob Brown"));
+        Assert.assertTrue("Added fullname is not displayed", webDriver.getPageSource().contains("Bob Brown"));
     }
 
-    public void checkIsEmailPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("brown@gmail.com"));
-    }
-
+    @Step
     public void checkIsWindowsAccountPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
+        Assert.assertTrue("Added account is not displayed", webDriver.getPageSource().contains("TestUnlockAccount"));
     }
 
+    @Step
     public void checkIsDeviceIdPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
+        Assert.assertTrue("Added device is not displayed", webDriver.getPageSource().contains("ST10399999900004"));
     }
 
+    @Step
     public void checkIsWorkstationIdPresent() {
-        Assert.assertTrue("Data is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
+        Assert.assertTrue("Added workstation is not displayed", webDriver.getPageSource().contains("BEZTUZHEV-TESTW"));
     }
 
-    public void clickOnDropdownMenu() {
-        actionsWithOurElements.clickOnElement(dropdownMenu);
+    @Step
+    public void clickOnDropdownMenuEmployee() {
+        actionsWithOurElements.clickOnElement(dropdownMenuEmployee);
     }
 
+    @Step
     public void clickOnEditEmployeeLink() {
         actionsWithOurElements.clickOnElement(editEmployeeLink);
     }
 
+    @Step
     public void editFirstName(String firstName) {
         actionsWithOurElements.enterTextInInput(editFirstName, firstName);
     }
 
+    @Step
     public void editLastName(String lastName) {
         actionsWithOurElements.enterTextInInput(editLastName, lastName);
     }
 
+    @Step
     public void editEmail(String emailField) {
         actionsWithOurElements.enterTextInInput(editEmail, emailField);
     }
 
+    @Step
     public void editPhoneNumber(String phoneNumberField) {
         actionsWithOurElements.enterTextInInput(editPhoneNumber, phoneNumberField);
     }
 
+    @Step
     public void clickOnCompanyList() {
         actionsWithOurElements.clickOnElement(companyList);
     }
 
+    @Step
     public void clickOnCompany() {
         actionsWithOurElements.clickOnElement(selectCompany);
     }
 
+    @Step
     public void clickOnDepartmentList() {
         actionsWithOurElements.clickOnElement(departmentList);
     }
 
+    @Step
     public void clickOnDepartment() {
         actionsWithOurElements.clickOnElement(selectDepartment);
     }
 
+    @Step
     public void clickOnPositionList() {
         actionsWithOurElements.clickOnElement(positionList);
     }
 
+    @Step
     public void clickOnPosition() {
         actionsWithOurElements.clickOnElement(selectPosition);
     }
 
+    @Step
     public void clickOnSaveButton() {
         actionsWithOurElements.clickOnElement(saveButton);
     }
 
-    public void clickOnSearchbox() {
-        actionsWithOurElements.clickOnElement(clickOnSearch);
+    @Step
+    public void clickOnDeleteMenuAccount() {
+        actionsWithOurElements.clickOnElement(deleteMenuAccount);
     }
 
+    @Step
     public void clickOnDetailsLink() {
-        actionsWithOurElements.clickOnElement(detailsLink);
+        actionsWithOurElements.clickOnElement(detailsMenuEmployee);
     }
 
+    @Step
     public void clickOnRemoveDeviceButton() {
         actionsWithOurElements.clickOnElement(removeDeviceButton);
     }
 
-    public void clickOnDeleteDeviceButton() {
-        actionsWithOurElements.clickOnElement(deleteDeviceButton);
+    @Step
+    public void clickOnDeleteButton() {
+        actionsWithOurElements.clickOnElement(deleteButton);
     }
 
+    @Step
     public void clickOnDeleteEmployeeLink() {
         actionsWithOurElements.clickOnElement(deleteEmployeeLink);
     }
 
-    public void clickOnDeleteEmployeeButton() {
-        actionsWithOurElements.clickOnElement(deleteEmployeeButton);
+    @Step
+    public void clickOnDropdownMenuAccount() {
+        actionsWithOurElements.clickOnElement(dropdownMenuAccount);
     }
-
 
 }
