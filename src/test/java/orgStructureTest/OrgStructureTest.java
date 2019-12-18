@@ -21,8 +21,25 @@ public class OrgStructureTest extends AbstractParentTest {
         orgStructurePage.checkIsOrgStructurePagePresent();
 
         //Create Company
+        orgStructurePage.clickOnCreateCompanyButton();
+        orgStructurePage.enterCompanyName("Hideez");
+        orgStructurePage.clickOnCreateButton();
+        orgStructurePage.checkIsCompanyNamePresent();
 
         //Edit Company
+        orgStructurePage.clickOnDropdownMenuCompany();
+        orgStructurePage.clickOnEditMenuCompany();
+        orgStructurePage.enterCompanyName("1Hideez");
+        orgStructurePage.clickOnSaveCompanyNameButton();
+        orgStructurePage.checkIsEditedCompanyNamePresent();
+
+        //Create Department
+
+
+
+
+
+
 
         //Delete Company
 
