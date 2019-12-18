@@ -109,14 +109,14 @@ public class EmployeesTest extends AbstractParentTest {
         employeesPage.clickOnDeleteEmployeeLink();
         employeesPage.clickOnDeleteButton();
 
-        //Delete Company
+        //Delete Department
         employeesPage.leftMenu.clickOnMenuSettings();
         employeesPage.leftMenu.clickOnSubMenuOrgStructure();
         orgStructurePage.clickOnDropdownMenuDepartment();
         orgStructurePage.clickOnDeleteMenuDepartment();
         orgStructurePage.clickOnDeleteButton();
 
-        //Delete Department
+        //Delete Company
         employeesPage.leftMenu.clickOnMenuSettings();
         employeesPage.leftMenu.clickOnSubMenuOrgStructure();
         orgStructurePage.clickOnDropdownMenuCompany();
