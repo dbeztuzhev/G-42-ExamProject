@@ -9,8 +9,8 @@ import io.qameta.allure.*;
 import java.util.Arrays;
 import java.util.Collection;
 
-@Epic("Allure examples")
-@Feature("Junit 4 support")
+@Epic("Allure report for HES")
+@Feature("LoginTest")
 
 @RunWith(Parameterized.class)
 
@@ -37,10 +37,10 @@ public class LoginTest extends AbstractParentTest {
 
     @Description("Some detailed test description")
     @Story("Base support for bdd annotations")
-    @Link("https://example.org")
-    @Link(name = "allure", type = "mylink")
-    @Issue("123")
-    @Issue("432")
+    @Link("https://publicdemo.hideez.com")
+    @Link(name = "allure", type = "dbeztuzhev")
+    @Issue("DEV-")
+    @Issue("DEV-")
     @Severity(SeverityLevel.CRITICAL)
 
     @Test

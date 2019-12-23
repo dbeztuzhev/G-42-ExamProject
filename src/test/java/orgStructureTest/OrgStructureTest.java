@@ -30,26 +30,33 @@ public class OrgStructureTest extends AbstractParentTest {
         orgStructurePage.clickOnDropdownMenuCompany();
         orgStructurePage.clickOnEditMenuCompany();
         orgStructurePage.enterCompanyName("1Hideez");
-        orgStructurePage.clickOnSaveCompanyNameButton();
+        orgStructurePage.clickOnSaveNameButton();
         orgStructurePage.checkIsEditedCompanyNamePresent();
 
         //Create Department
-
-
-
-
-
-
-
-        //Delete Company
-
-        //Create Department
+        orgStructurePage.clickOnCreateDepartmentButton();
+        orgStructurePage.selectCompanyFromList();
+        orgStructurePage.enterDepartmentNameInField("PR");
+        orgStructurePage.clickOnCreateButton();
+        orgStructurePage.checkIsDepartmentNamePresent();
 
         //Edit Department
+        orgStructurePage.clickOnDropdownMenuDepartment();
+        orgStructurePage.clickOnEditMenuDepartment();
+        orgStructurePage.enterDepartmentNameInField("1PR");
+        orgStructurePage.clickOnSaveNameButton();
+        orgStructurePage.checkIsEditedDepartmentNamePresent();
 
         //Delete Department
+        orgStructurePage.clickOnDropdownMenuDepartment();
+        orgStructurePage.clickOnDeleteMenuDepartment();
+        orgStructurePage.clickOnDeleteButton();
 
-        //Search
+        //Delete Company
+        orgStructurePage.clickOnDropdownMenuCompany();
+        orgStructurePage.clickOnDeleteMenuCompany();
+        orgStructurePage.clickOnDeleteButton();
+        orgStructurePage.checkIsCompanyIsNotPresent();
 
     }
 }
