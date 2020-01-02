@@ -69,22 +69,27 @@ public class OrgStructurePage extends ParentPage {
     public void checkIsOrgStructurePagePresent() {
         Assert.assertTrue("OrgStructurePage is not displayed", isAvatarDisplayed());
     }
+
     @Step
     public void clickOnDropdownMenuDepartment() {
         actionsWithOurElements.clickOnElement(dropdownMenuDepartment);
     }
+
     @Step
     public void clickOnDeleteMenuDepartment() {
         actionsWithOurElements.clickOnElement(deleteMenuDepartment);
     }
+
     @Step
     public void clickOnDeleteButton() {
         actionsWithOurElements.clickOnElement(deleteButton);
     }
+
     @Step
     public void clickOnDropdownMenuCompany() {
         actionsWithOurElements.clickOnElement(dropdownMenuCompany);
     }
+
     @Step
     public void clickOnDeleteMenuCompany() {
         actionsWithOurElements.clickOnElement(deleteMenuCompany);
@@ -94,54 +99,67 @@ public class OrgStructurePage extends ParentPage {
     public void checkIsCompanyIsNotPresent() {
         Assert.assertTrue("Deleted Company is present", webDriver.getPageSource().contains("Hideez"));
     }
+
     @Step
     public void clickOnCreateCompanyButton() {
         actionsWithOurElements.clickOnElement(createCompanyButton);
     }
+
     @Step
     public void enterCompanyName(String companyName) {
         actionsWithOurElements.enterTextInInput(enterCompanyName, companyName);
     }
+
     @Step
     public void clickOnCreateButton() {
         actionsWithOurElements.clickOnElement(createButton);
     }
+
     @Step
     public void checkIsCompanyNamePresent() {
         Assert.assertTrue("Added Company is not displayed", webDriver.getPageSource().contains("Hideez"));
     }
+
     @Step
     public void clickOnEditMenuCompany() {
         actionsWithOurElements.clickOnElement(editMenuCompany);
     }
+
     @Step
     public void clickOnSaveNameButton() {
         actionsWithOurElements.clickOnElement(saveName);
     }
+
     @Step
     public void checkIsEditedCompanyNamePresent() {
         Assert.assertTrue("Added Company is not displayed", webDriver.getPageSource().contains("1Hideez"));
     }
+
     @Step
     public void clickOnCreateDepartmentButton() {
         actionsWithOurElements.clickOnElement(createDepartmentButton);
     }
+
     @Step
     public void selectCompanyFromList() {
         actionsWithOurElements.clickOnElement(selectCompanyFromList);
     }
+
     @Step
     public void enterDepartmentNameInField(String departmentName) {
         actionsWithOurElements.enterTextInInput(enterDepartmentName, departmentName);
     }
+
     @Step
     public void checkIsDepartmentNamePresent() {
         Assert.assertTrue("Added Department is not displayed", webDriver.getPageSource().contains("PR"));
     }
+
     @Step
     public void clickOnEditMenuDepartment() {
         actionsWithOurElements.clickOnElement(editMenuDepartment);
     }
+
     @Step
     public void checkIsEditedDepartmentNamePresent() {
         Assert.assertTrue("Edited Department is not displayed", webDriver.getPageSource().contains("1PR"));

@@ -43,6 +43,7 @@ public class PositionsPage extends ParentPage {
         super(webDriver, "/Positions");
     }
 
+    @Step
     public void clickOnDropdownMenuPosition() {
         actionsWithOurElements.clickOnElement(dropdownMenuPosition);
     }
