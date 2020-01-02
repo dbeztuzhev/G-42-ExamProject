@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class SharedAccountsTest extends AbstractParentTest {
     @Test
-    public void editProvidersDeal() {
+    public void sharedAccountTest() {
         loginPage.fillingLoginFormAndSubmitIt("admin@hideez.com", "admin");
         dashboardPage.checkCurrentUrl();
         dashboardPage.checkIsDashboardPagePresent();
@@ -22,5 +22,36 @@ public class SharedAccountsTest extends AbstractParentTest {
         sharedAccountsPage.enterOTPShAcc("KN726EWRNWGWGM7ZNPWYJI6MQYKEJFKP");
         sharedAccountsPage.clickOnCreateButton();
         sharedAccountsPage.checkIsShAccPresent();
+
+        //Edit Shared Account
+        sharedAccountsPage.clickOnDropdownMenu();
+        sharedAccountsPage.clickOnEditShAccLink();
+        sharedAccountsPage.enterNameShAcc("my");
+        sharedAccountsPage.enterUrlsShAcc("gmail.com");
+        sharedAccountsPage.enterLoginShAcc("hideeztest@gmail.com");
+        sharedAccountsPage.clickOnSaveButton();
+        sharedAccountsPage.checkIsShAccNameWasEdited();
+        sharedAccountsPage.checkIsShAccUrlWasEdited();
+        sharedAccountsPage.checkIsShAccLoginWasEdited();
+
+        //Edit Password ShaAcc
+        sharedAccountsPage.clickOnDropdownMenu();
+        sharedAccountsPage.clickOnEditPassLink();
+        sharedAccountsPage.enterPasswordShAcc("123456AA");
+        sharedAccountsPage.confirmPasswordShAcc("123456AA");
+        sharedAccountsPage.clickOnSaveButton();
+
+        //Edit OTP ShAcc
+        sharedAccountsPage.clickOnDropdownMenu();
+        sharedAccountsPage.clickOnEditOtpLink();
+        sharedAccountsPage.enterOTPShAcc("AA726EWRNWGWGM7ZNPWYJI6MQYKEJFAA");
+        sharedAccountsPage.clickOnSaveButton();
+
+        //Delete Shared Account
+        sharedAccountsPage.clickOnDropdownMenu();
+        sharedAccountsPage.clickOnDeleteShAccLink();
+        sharedAccountsPage.clickOnDeleteButton();
+        sharedAccountsPage.enterInSearhFieldShAccName("my");
+        sharedAccountsPage.checkIsShAccNotPresent();
     }
 }

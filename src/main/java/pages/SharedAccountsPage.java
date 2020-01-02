@@ -33,6 +33,30 @@ public class SharedAccountsPage extends ParentPage {
     @FindBy(xpath = ".//input[@value ='Create']")
     private WebElement createButton;
 
+    @FindBy(xpath = ".//img[@src ='/svg/action/more.svg']")
+    private WebElement dropdownMenu;
+
+    @FindBy(xpath = ".//a[@data-action='EditSharedAccount']")
+    private WebElement editShAccLink;
+
+    @FindBy(xpath = ".//input[@value='Save']")
+    private WebElement saveButton;
+
+    @FindBy(xpath = ".//a[@data-action='EditSharedAccountPwd']")
+    private WebElement editShAccPassLink;
+
+    @FindBy(xpath = ".//a[@data-action='EditSharedAccountOtp']")
+    private WebElement editShAccOtpLink;
+
+    @FindBy(xpath = ".//a[@data-action='DeleteSharedAccount']")
+    private WebElement deleteShAccLink;
+
+    @FindBy(xpath = ".//input[@id ='searchbox']")
+    private WebElement enterSearchShAcc;
+
+    @FindBy(xpath = ".//input[@value='Delete']")
+    private WebElement deleteShAccButton;
+
 
     public LeftMenu leftMenu;
 
@@ -83,4 +107,45 @@ public class SharedAccountsPage extends ParentPage {
         Assert.assertTrue("Added shared account is not added", webDriver.getPageSource().contains("hideeztest@ukr.net"));
     }
 
+    public void clickOnDropdownMenu() { actionsWithOurElements.clickOnElement(dropdownMenu);
+    }
+
+    public void clickOnEditShAccLink() { actionsWithOurElements.clickOnElement(editShAccLink);
+    }
+
+    public void checkIsShAccNameWasEdited() {
+        Assert.assertTrue("Edited shared account Name is present", webDriver.getPageSource().contains("my"));
+    }
+
+    public void checkIsShAccUrlWasEdited() {
+        Assert.assertTrue("Edited shared account Url is present", webDriver.getPageSource().contains("gmail.com"));
+    }
+
+    public void checkIsShAccLoginWasEdited() {
+        Assert.assertTrue("Edited shared account Login is present", webDriver.getPageSource().contains("hideeztest@gmail.com"));
+    }
+
+    public void clickOnSaveButton() { actionsWithOurElements.clickOnElement(saveButton);
+    }
+
+
+    public void clickOnEditPassLink() { actionsWithOurElements.clickOnElement(editShAccPassLink);
+    }
+
+    public void clickOnEditOtpLink() { actionsWithOurElements.clickOnElement(editShAccOtpLink);
+    }
+
+    public void clickOnDeleteShAccLink() { actionsWithOurElements.clickOnElement(deleteShAccLink);
+    }
+
+    public void clickOnDeleteButton() { actionsWithOurElements.clickOnElement(deleteShAccButton);
+    }
+
+    public void enterInSearhFieldShAccName(String nameSharedAccounts ) {
+        actionsWithOurElements.enterTextInInput(enterSearchShAcc, nameSharedAccounts);
+    }
+
+    public void checkIsShAccNotPresent() {
+        Assert.assertTrue("Deleted shared account is not present", webDriver.getPageSource().contains("No data available in table"));
+    }
 }
