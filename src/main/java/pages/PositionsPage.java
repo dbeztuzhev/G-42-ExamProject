@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,51 +49,62 @@ public class PositionsPage extends ParentPage {
         actionsWithOurElements.clickOnElement(dropdownMenuPosition);
     }
 
+    @Step
     public void clickOnDeleteMenuPosition() {
         actionsWithOurElements.clickOnElement(deleteMenuPosition);
     }
 
+    @Step
     public void clickOnDeleteButton() {
         actionsWithOurElements.clickOnElement(deleteButton);
     }
 
+    @Step
     public void enterPositionInToSearchField(String searchPosition) {
         actionsWithOurElements.enterTextInInput(enterSearchPosition, searchPosition);
     }
 
+    @Step
     public void checkIsPositionIsNotPresent() {
         Assert.assertTrue("Deleted Position is present", webDriver.getPageSource().contains("No matching records found"));
     }
 
+    @Step
     public void checkIsPositionPagePresent() {
         Assert.assertTrue("Created page is not displayed", webDriver.getPageSource().contains("Create position"));
     }
 
+    @Step
     public void clickOnCreatePositionButton() {
         actionsWithOurElements.clickOnElement(createPositionButton);
     }
 
+    @Step
     public void enterPositionName(String positionName) {
         actionsWithOurElements.enterTextInInput(positionNameField, positionName);
     }
 
+    @Step
     public void clickOnCreateButton() {
         actionsWithOurElements.clickOnElement(createButton);
     }
 
+    @Step
     public void checkIsPositionNamePresent() {
         Assert.assertTrue("Created Position is not displayed", webDriver.getPageSource().contains("PRManager"));
     }
 
+    @Step
     public void clickOnEditMenuPosition() {
         actionsWithOurElements.clickOnElement(editMenuLink);
-
     }
 
+    @Step
     public void clickOnSaveNameButton() {
         actionsWithOurElements.clickOnElement(saveNameButton);
     }
 
+    @Step
     public void checkIsEditedPositionNamePresent() {
         Assert.assertTrue("Created Position is not displayed", webDriver.getPageSource().contains("BipPRManager"));
     }

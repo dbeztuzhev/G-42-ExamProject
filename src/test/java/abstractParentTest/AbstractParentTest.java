@@ -31,6 +31,7 @@ public class AbstractParentTest {
     protected PositionsPage positionsPage;
     protected SharedAccountsPage sharedAccountsPage;
     protected DeviceAccessProfilesPage deviceAccessProfilesPage;
+    protected DevicesPage devicesPage;
 
 
     protected static ConfigProperties configProperties =
@@ -53,6 +54,7 @@ public class AbstractParentTest {
         positionsPage = new PositionsPage(webDriver);
         sharedAccountsPage = new SharedAccountsPage(webDriver);
         deviceAccessProfilesPage = new DeviceAccessProfilesPage(webDriver);
+        devicesPage = new DevicesPage(webDriver);
     }
 
     private WebDriver driverInit() throws Exception {
