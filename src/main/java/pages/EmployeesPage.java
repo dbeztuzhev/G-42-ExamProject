@@ -118,7 +118,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='Employee_PositionId']")
     private WebElement positionList;
 
-    @FindBy(xpath = ".//*[@id='Employee_PositionId']/option[text() ='HR']")
+    @FindBy(xpath = ".//*[@id='Employee_PositionId']/option[text() ='PRManager']")
     private WebElement selectPosition;
 
     @FindBy(xpath = ".//input[@value='Save']")
