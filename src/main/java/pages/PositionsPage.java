@@ -19,7 +19,7 @@ public class PositionsPage extends ParentPage {
     @FindBy(xpath = ".//input[@value ='Delete']")
     private WebElement deleteButton;
 
-    @FindBy(xpath = ".//input[@id ='searchbox']")
+    @FindBy(xpath = ".//input[@placeholder ='Search' and @class='form-control']")
     private WebElement enterSearchPosition;
 
     @FindBy(xpath = ".//button[@data-title = 'Create position']")
@@ -31,7 +31,7 @@ public class PositionsPage extends ParentPage {
     @FindBy(xpath = ".//input[@value = 'Create']")
     private WebElement createButton;
 
-    @FindBy(xpath = "//*[@id=\"positions\"]/tbody/tr[2]/td[3]/div/div/a[1]")
+    @FindBy(xpath = ".//*[@id='positions']/tbody/tr[2]/td[3]/div/div/a[1]")
     private WebElement editMenuLink;
 
     @FindBy(xpath = ".//input[@value = 'Save']")
