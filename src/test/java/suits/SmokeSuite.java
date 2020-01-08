@@ -20,5 +20,5 @@ import positionsTest.PositionsTest;
 
         }
 )
-public class SmokeSuit {
+public class SmokeSuite {
 }
