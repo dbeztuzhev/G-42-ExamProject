@@ -184,8 +184,8 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M4</version>
                     <configuration>
-                        <parallel>classes</parallel>
-                        <threadCount>1</threadCount>
+                        <!--/<parallel>classes</parallel>-->
+                        <!--<threadCount>1</threadCount>-->
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         </argLine>
