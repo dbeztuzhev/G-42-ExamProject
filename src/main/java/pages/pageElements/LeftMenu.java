@@ -53,6 +53,9 @@ public class LeftMenu extends CommonActionWithElements {
     @FindBy(xpath = ".//a[@href='/Settings/Positions']")
     private Link subMenuPositions;
 
+    @FindBy (xpath = ".//a[@href='/Settings/DataProtection']")
+    private Link subMenuDataProtection;
+
 
     public void clickOnMenuDashboard() {
         actionsWithOurElements.clickOnElement(menuDashboard);
@@ -113,4 +116,6 @@ public class LeftMenu extends CommonActionWithElements {
     public void clickOnSubMenuPositions() {
         actionsWithOurElements.clickOnElement(subMenuPositions);
     }
+
+    public  void clickOnSubMenuDataProtection () {actionsWithOurElements.clickOnElement(subMenuDataProtection);}
 }

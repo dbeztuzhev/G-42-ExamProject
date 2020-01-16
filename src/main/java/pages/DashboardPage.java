@@ -26,6 +26,6 @@ public class DashboardPage extends ParentPage {
 
     public void checkIsDashboardPagePresent() {
         Assert.assertTrue("DashboardPage is not displayed", isAvatarDisplayed());
-    }
 
+    }
 }

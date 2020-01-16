@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
 
 public class ActionsWithOurElements {
     WebDriver webDriver;
@@ -118,5 +119,37 @@ public class ActionsWithOurElements {
             stopTestAndPrintMessage();
         }
     }
+
+    public String getElementValue(WebElement webElement) {
+        try {
+            String value;
+            value = webElement.getText();
+            return value;
+        } catch (Exception e) {
+            logger.error("state should be only 'check' or 'uncheck'");
+            stopTestAndPrintMessage();
+            return "Can't work with element";
+        }
+    }
+
+    public boolean compareValues(String elementValue, String templateName) {
+        try {
+            boolean state = elementValue.equals(templateName);
+            if (state == true) {
+                logger.info("element are the same");
+                return true;
+            } else {
+                logger.info("elements are different");
+                return false;
+            }
+        } catch (Exception e) {
+            logger.info("Can't work with element");
+            return false;
+        }
+    }
+
+    public void addSomeWait(int timeInSeconds) {
+            webDriver.manage().timeouts().implicitlyWait(timeInSeconds, TimeUnit.SECONDS);
+        }
 }
 

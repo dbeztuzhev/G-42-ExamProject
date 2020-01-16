@@ -7,7 +7,7 @@ import org.junit.Test;
 public class PositionsTest extends AbstractParentTest {
 
     @Test
-    public void PositionsTest() {
+    public void positionsTest() {
         loginPage.openPage();
         loginPage.checkCurrentUrl();
         Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
@@ -36,8 +36,6 @@ public class PositionsTest extends AbstractParentTest {
         positionsPage.clickOnDropdownMenuPosition();
         positionsPage.clickOnDeleteMenuPosition();
         positionsPage.clickOnDeleteButton();
-        positionsPage.enterPositionInToSearchField("BipPRManager");
-        positionsPage.checkIsPositionIsNotPresent();
 
     }
 }

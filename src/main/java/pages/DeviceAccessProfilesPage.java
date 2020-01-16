@@ -9,10 +9,10 @@ import org.openqa.selenium.support.FindBy;
 import pages.pageElements.LeftMenu;
 import parentPage.ParentPage;
 
-public class DeviceAccessProfilesPage extends ParentPage {
+    public class DeviceAccessProfilesPage extends ParentPage {
 
-    @FindBy(xpath = ".//*[@data-title = 'Create profile']")
-    private WebElement createProfilesButton;
+        @FindBy(xpath = ".//*[@data-title = 'Create profile']")
+        private WebElement createProfilesButton;
 
     @FindBy(xpath = ".//*[@id = 'DeviceAccessProfile_Name']")
     private WebElement profileName;
