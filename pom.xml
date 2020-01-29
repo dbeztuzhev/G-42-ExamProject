@@ -133,6 +133,11 @@
             <artifactId>allure-maven-plugin</artifactId>
             <version>2.6</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -211,6 +216,12 @@
                             <groupId>org.aspectj</groupId>
                             <artifactId>aspectjweaver</artifactId>
                             <version>${aspectj.version}</version>
+                        </dependency>
+
+                        <dependency>
+                            <groupId>com.sun.mail</groupId>
+                            <artifactId>javax.mail</artifactId>
+                            <version>1.6.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>

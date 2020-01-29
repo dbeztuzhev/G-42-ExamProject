@@ -1,46 +1,38 @@
 package dataProtectionTest;
 
 import abstractParentTest.AbstractParentTest;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class DataProtectionTest extends AbstractParentTest {
 
-    @Test
-    public void dataProtectionTest() {
-        loginPage.openPage();
-        loginPage.checkCurrentUrl();
-        Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
+    @Before
+    public void preconditions(){
         loginPage.fillingLoginFormAndSubmitIt("admin@hideez.com", "admin");
         dashboardPage.checkCurrentUrl();
-        checkExpectedResult("Dashboard Avatar is not present", dashboardPage.isAvatarDisplayed());
-        Assert.assertEquals(dashboardPage.getTitle(), "Dashboard - HES");
         dashboardPage.leftMenu.clickOnMenuSettings();
         dashboardPage.leftMenu.clickOnSubMenuDataProtection();
-
         dataProtectionPage.checkCurrentUrl();
+    }
 
-        dataProtectionPage.clickOnEnableDataProtectionButtonLink();
-
-        dataProtectionPage.enterPasswordInToPasswordField("123007");
+    @Test
+    public void dataProtectionTest() {
+        dataProtectionPage.clickOnEnableDataProtectionButton();
+        dataProtectionPage.enterNewPassword("123007");
         dataProtectionPage.confirmPassword("123007");
-        dataProtectionPage.clickOnEnableButtonLink();
+        dataProtectionPage.clickEnableButton();
+        checkExpectedResult("Can't enable data protection", dataProtectionPage.isDataProtectionEnabled());
 
-        dataProtectionPage.checkCurrentUrl();
+        dataProtectionPage.clickOnChangeEncryptionPassword();
+        dataProtectionPage.enterCurrentPassword("123007");
+        dataProtectionPage.enterNewPasswordForChanging("123456");
+        dataProtectionPage.confirmPasswordForChanging("123456");
+        dataProtectionPage.clickChangeButton();
+        checkExpectedResult("Can't change data protection password", dataProtectionPage.isPasswordChanged());
 
-        dataProtectionPage.clickOnChangeEncryptionPasswordButtonLink();
-
-        dataProtectionPage.enterCurrentOldPasswordInToPasswordField("123007");
-        dataProtectionPage.enterNewPasswordInToPasswordField("123456");
-        dataProtectionPage.confirmNewPassword("123456");
-        dataProtectionPage.clickOnChangeButton();
-
-        dataProtectionPage.checkCurrentUrl();
-
-        dataProtectionPage.clickOnDisableDataProtectionButtonLink();
-
-        dataProtectionPage.enterCurrentPasswordInToPasswordField("123456");
-        dataProtectionPage.clickOnDisableButton();
-        dataProtectionPage.checkIsEnableDataProtectionButtonLinkPresent();
+        dataProtectionPage.clickOnDisableDataProtectionButton();
+        dataProtectionPage.enterCurrentEncryptionPassword("123456");
+        dataProtectionPage.clickDisableButton();
+        checkExpectedResult("Can't disable data protection", dataProtectionPage.isAbilityToEnableDataProtection());
     }
 }

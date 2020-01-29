@@ -2,13 +2,15 @@ package orgStructureTest;
 
 import abstractParentTest.AbstractParentTest;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class OrgStructureTest extends AbstractParentTest {
 
 
-    @Test
-    public void orgStructureTest() {
+    @Before
+    public void preconditions() {
+
         loginPage.openPage();
         loginPage.checkCurrentUrl();
         Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
@@ -19,6 +21,10 @@ public class OrgStructureTest extends AbstractParentTest {
         dashboardPage.leftMenu.clickOnMenuSettings();
         dashboardPage.leftMenu.clickOnSubMenuOrgStructure();
         orgStructurePage.checkIsOrgStructurePagePresent();
+    }
+
+    @Test
+    public void orgStructureTest() {
 
         //Create Company
         orgStructurePage.clickOnCreateCompanyButton();

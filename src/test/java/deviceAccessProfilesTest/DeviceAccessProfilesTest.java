@@ -2,12 +2,15 @@ package deviceAccessProfilesTest;
 
 import abstractParentTest.AbstractParentTest;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class DeviceAccessProfilesTest extends AbstractParentTest {
 
-    @Test
-    public void deviceAccessProfilesTest() {
+
+    @Before
+    public void preconditions() {
+
         loginPage.openPage();
         loginPage.checkCurrentUrl();
         Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
@@ -18,6 +21,10 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
         dashboardPage.leftMenu.clickOnMenuSettings();
         dashboardPage.leftMenu.clickOnSubMenuDevAccessProfiles();
         deviceAccessProfilesPage.checkIsDeviceAccessProfilesPagePresent();
+    }
+
+    @Test
+    public void deviceAccessProfilesTest() {
 
         //create Profile
         deviceAccessProfilesPage.clickOnCreateProfilesButton();
