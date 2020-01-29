@@ -2,12 +2,13 @@ package positionsTest;
 
 import abstractParentTest.AbstractParentTest;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class PositionsTest extends AbstractParentTest {
 
-    @Test
-    public void positionsTest() {
+    @Before
+    public void preconditions() {
         loginPage.openPage();
         loginPage.checkCurrentUrl();
         Assert.assertTrue("LogIn button is displayed", loginPage.isPageLoaded());
@@ -18,6 +19,11 @@ public class PositionsTest extends AbstractParentTest {
         dashboardPage.leftMenu.clickOnMenuSettings();
         dashboardPage.leftMenu.clickOnSubMenuPositions();
         positionsPage.checkIsPositionPagePresent();
+
+    }
+
+    @Test
+    public void positionsTest() {
 
         //Create Position
         positionsPage.clickOnCreatePositionButton();

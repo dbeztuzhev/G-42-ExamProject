@@ -14,6 +14,8 @@ public class ParentPage {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected ActionsWithOurElements actionsWithOurElements;
+
+
     public ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     String baseUrl;
