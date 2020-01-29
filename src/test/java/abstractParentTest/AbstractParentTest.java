@@ -35,6 +35,7 @@ public class AbstractParentTest {
     protected DevicesPage devicesPage;
     protected DataProtectionPage dataProtectionPage;
     protected TemplatesPage templatesPage;
+    protected AdministratorsPage administratorsPage;
 
 
     protected static ConfigProperties configProperties =
@@ -60,7 +61,8 @@ public class AbstractParentTest {
         devicesPage = new DevicesPage(webDriver);
         dataProtectionPage = new DataProtectionPage (webDriver);
         templatesPage = new TemplatesPage(webDriver);
-    }
+        administratorsPage = new AdministratorsPage(webDriver);
+            }
 
     private WebDriver driverInit() throws Exception {
         String browser = System.getProperty("browser");

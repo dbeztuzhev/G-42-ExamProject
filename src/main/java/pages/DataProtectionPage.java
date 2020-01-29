@@ -1,124 +1,139 @@
 package pages;
 
-import io.qameta.allure.Step;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.pageElements.LeftMenu;
 import parentPage.ParentPage;
 
 public class DataProtectionPage extends ParentPage {
 
-    @FindBy(xpath = ".//div[@class='custom-content p-4']//a[@class='btn btn-link']//h6")
-    public WebElement enableDataProtectionButtonLink;
+    @FindBy(xpath = ".//a[@class='btn btn-link']")
+    private WebElement enableDataProtection;
 
     @FindBy(xpath = ".//input[@id='NewPassword_Password']")
-    public WebElement enterPassword;
+    private WebElement passwordField;
 
     @FindBy(xpath = ".//input[@id='NewPassword_ConfirmPassword']")
-    public WebElement confirmPassword;
+    private WebElement confirmPasswordField;
 
-    @FindBy(xpath = ".//input[@value='Enable']")
-    public WebElement enableButtonLink;
+    @FindBy(xpath = ".//input[@class='btn btn-primary']")
+    private WebElement enableButton;
 
-    @FindBy(xpath = ".//a[@class='btn btn-link'][2]//h6")
-    public WebElement changeEncryptionPasswordButtonLink;
+    @FindBy(xpath = ".//a[@class='btn btn-link'][1]//h6")
+    private WebElement disableDataProtection;
+
+    @FindBy(xpath = ".//a[@class='btn btn-link'][2]")
+    private WebElement changeEncryptionPassword;
 
     @FindBy(xpath = ".//input[@id='ChangePassword_OldPassword']")
-    public WebElement currentOldPasswordField;
+    private WebElement currentPasswordField;
 
     @FindBy(xpath = ".//input[@id='ChangePassword_NewPassword']")
-    public WebElement newPasswordField;
+    private WebElement newPasswordField;
 
     @FindBy(xpath = ".//input[@id='ChangePassword_ConfirmPassword']")
-    public WebElement confirmNewPasswordField;
+    private WebElement confirmNewPasswordField;
 
-    @FindBy(xpath = ".//input[@value='Change']")
-    public WebElement changeButton;
+    @FindBy(xpath = ".//input[@class='btn btn-primary']")
+    private WebElement changeDataProtectionButton;
 
-    @FindBy (xpath = ".//div//div[2]//div//a[1]//h6")
-    public WebElement disableDataProtectionButtonLink;
+    @FindBy(xpath = ".//html//body//div[@class='d-flex']//div[@class='d-flex flex-column custom-main']//div[@class='custom-content p-4']//div[@id='success-alert']")
+    private WebElement allert;
 
-    @FindBy(xpath = ".//input[@id='CurrentPassword_Password']")
-    public WebElement currentPasswordField;
+    @FindBy(id = "CurrentPassword_Password")
+    private WebElement dataProtectionPasswordField;
 
-    @FindBy(xpath = ".//input[@value='Disable']")
-    public WebElement disableButton;
+    @FindBy(xpath = ".//input[@class='btn btn-danger']")
+    private WebElement disableButton;
 
-
-    public LeftMenu leftMenu;
+    @FindBy(xpath = ".//h1[@class='text-navyblue']")
+    private WebElement dataProtectionHeader;
 
 
     public DataProtectionPage(WebDriver webDriver) {
         super(webDriver, "/Settings/DataProtection");
     }
 
-    @Step
-    public void clickOnEnableDataProtectionButtonLink() {
-        actionsWithOurElements.clickOnElement(enableDataProtectionButtonLink);
+    public void clickOnEnableDataProtectionButton() {
+        actionsWithOurElements.isElementDisplayed(dataProtectionHeader);
+        actionsWithOurElements.isElementDisplayed(enableDataProtection);
+        actionsWithOurElements.clickOnElement(enableDataProtection);
     }
 
-    @Step
-    public void enterPasswordInToPasswordField(String passwordField) {
-        actionsWithOurElements.enterTextInInput(enterPassword, passwordField);
+    public void enterNewPassword(String newPassword) {
+        actionsWithOurElements.isElementDisplayed(passwordField);
+        actionsWithOurElements.clickOnElement(passwordField);
+        actionsWithOurElements.enterTextInInput(passwordField, newPassword);
     }
 
-    @Step
-    public void confirmPassword(String confirmField) {
-        actionsWithOurElements.enterTextInInput(confirmPassword, confirmField);
+    public void confirmPassword(String newPassword) {
+        actionsWithOurElements.isElementDisplayed(confirmPasswordField);
+        actionsWithOurElements.clickOnElement(confirmPasswordField);
+        actionsWithOurElements.enterTextInInput(confirmPasswordField, newPassword);
     }
 
-    @Step
-    public void clickOnEnableButtonLink() {
-        actionsWithOurElements.clickOnElement(enableButtonLink);
+    public void clickEnableButton() {
+        actionsWithOurElements.isElementDisplayed(enableButton);
+        actionsWithOurElements.clickOnElement(enableButton);
     }
 
-    @Step
-    public void clickOnChangeEncryptionPasswordButtonLink() {
-        actionsWithOurElements.clickOnElement(changeEncryptionPasswordButtonLink);
+
+
+    public boolean isDataProtectionEnabled() {
+        return actionsWithOurElements.isElementDisplayed(disableDataProtection);
     }
 
-    @Step
-    public void enterCurrentOldPasswordInToPasswordField(String currentOldPassword) {
-        actionsWithOurElements.enterTextInInput(currentOldPasswordField, currentOldPassword);
+    public void clickOnChangeEncryptionPassword() {
+        actionsWithOurElements.isElementDisplayed(dataProtectionHeader);
+        actionsWithOurElements.isElementDisplayed(changeEncryptionPassword);
+        actionsWithOurElements.clickOnElement(changeEncryptionPassword);
+        actionsWithOurElements.isElementDisplayed(currentPasswordField);
     }
 
-    @Step
-    public void enterNewPasswordInToPasswordField(String newPassword) {
-        actionsWithOurElements.enterTextInInput(newPasswordField, newPassword);
-    }
-
-    @Step
-    public void confirmNewPassword(String confirmNewPassword) {
-        actionsWithOurElements.enterTextInInput(confirmNewPasswordField, confirmNewPassword);
-    }
-
-    @Step
-    public void clickOnChangeButton() {
-        actionsWithOurElements.clickOnElement(changeButton);
-    }
-
-    public void clickOnDisableDataProtectionButtonLink() {
-        actionsWithOurElements.clickOnElement(disableDataProtectionButtonLink);
-    }
-
-    @Step
-    public void enterCurrentPasswordInToPasswordField(String currentPassword) {
+    public void enterCurrentPassword(String currentPassword) {
+        actionsWithOurElements.isElementDisplayed(currentPasswordField);
+        actionsWithOurElements.clickOnElement(currentPasswordField);
         actionsWithOurElements.enterTextInInput(currentPasswordField, currentPassword);
     }
 
-    @Step
-    public void clickOnDisableButton() {
+    public void enterNewPasswordForChanging(String newPassword) {
+        actionsWithOurElements.isElementDisplayed(newPasswordField);
+        actionsWithOurElements.clickOnElement(newPasswordField);
+        actionsWithOurElements.enterTextInInput(newPasswordField, newPassword);
+    }
+    public void confirmPasswordForChanging(String confirmPassword) {
+        actionsWithOurElements.isElementDisplayed(confirmNewPasswordField);
+        actionsWithOurElements.clickOnElement(confirmNewPasswordField);
+        actionsWithOurElements.enterTextInInput(confirmNewPasswordField, confirmPassword);
+    }
+
+    public void clickChangeButton() {
+        actionsWithOurElements.isElementDisplayed(changeDataProtectionButton);
+        actionsWithOurElements.clickOnElement(changeDataProtectionButton);
+    }
+
+    public boolean isPasswordChanged() {
+        return actionsWithOurElements.isElementDisplayed(changeEncryptionPassword);
+    }
+
+    public void clickOnDisableDataProtectionButton() {
+        actionsWithOurElements.isElementDisplayed(dataProtectionHeader);
+        actionsWithOurElements.isElementDisplayed(disableDataProtection);
+        actionsWithOurElements.clickOnElement(disableDataProtection);
+    }
+
+    public void enterCurrentEncryptionPassword(String dataProtectionPassword) {
+        actionsWithOurElements.isElementDisplayed(dataProtectionPasswordField);
+        actionsWithOurElements.clickOnElement(dataProtectionPasswordField);
+        actionsWithOurElements.enterTextInInput(dataProtectionPasswordField, dataProtectionPassword);
+    }
+
+    public void clickDisableButton() {
+        actionsWithOurElements.isElementDisplayed(disableButton);
         actionsWithOurElements.clickOnElement(disableButton);
     }
 
-    @Step
-    public void checkIsEnableDataProtectionButtonLinkPresent() {
-        Assert.assertTrue("Enable Data Protection Button Link is not displayed", webDriver.getPageSource().contains("Enable data protection"));
-    }
-
-    public void waitSomeTime(int timeInSeconds) {
-        actionsWithOurElements.addSomeWait(timeInSeconds);
+    public boolean isAbilityToEnableDataProtection() {
+        return (actionsWithOurElements.isElementDisplayed(enableDataProtection));
     }
 }
