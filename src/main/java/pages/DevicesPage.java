@@ -13,7 +13,7 @@ public class DevicesPage extends ParentPage {
     @FindBy(xpath = ".//a[@href='/Devices/Import']")
     private WebElement importButton;
 
-    @FindBy(xpath = ".//tr[@class='odd']//div[@class='custom-control custom-checkbox']")
+    @FindBy(xpath = ".//*[@id='devices']/tbody/tr[4]/td[1]/div")
     private WebElement deviceCheckbox;
 
     @FindBy(xpath = ".//button[@id='btnProfile']")

@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.pageElements.LeftMenu;
 import parentPage.ParentPage;
 
 public class AdministratorsPage extends ParentPage {
@@ -19,11 +18,14 @@ public class AdministratorsPage extends ParentPage {
     @FindBy(xpath = ".//input[@value= 'Invite']")
     private WebElement inviteButton;
 
-    @FindBy(xpath = ".//div/div[2]//div//div[3]//div[2]//div/table//tbody//tr[2]//td[5]//div//a//img")
+    @FindBy(xpath = ".//div/div[2]//div//div[3]//div[2]/div//tr[1]/td[5]/div/a/img")
     private WebElement adminDropdownMenu;
 
-    @FindBy(xpath = ".//*[@id=\"users\"]//tbody//tr[2]//td[5]//div//div//a")
+    @FindBy(xpath = ".//div/div[2]/div/div[3]/div[2]/div//tr[1]/td[5]/div/div/a")
     private WebElement deleteItem;
+
+    @FindBy (xpath = ".//input[@value='Delete']")
+    private WebElement deleteButton;
 
 
     public AdministratorsPage(WebDriver webDriver) {
@@ -63,6 +65,10 @@ public class AdministratorsPage extends ParentPage {
         actionsWithOurElements.clickOnElement(deleteItem);
     }
 
+    @Step
+    public void clickOnDeleteButton() {
+        actionsWithOurElements.clickOnElement(deleteButton);
+    }
     @Step
     public void checkIsDeletedAdminNotPresent() {
         Assert.assertTrue("Created Position is not displayed", !webDriver.getPageSource().contains("admhideeztest@gmail.com"));

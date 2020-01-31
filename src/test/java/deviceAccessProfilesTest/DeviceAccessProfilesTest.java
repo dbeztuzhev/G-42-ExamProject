@@ -18,13 +18,59 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
         dashboardPage.checkCurrentUrl();
         checkExpectedResult("Dashboard Avatar is not present", dashboardPage.isAvatarDisplayed());
         Assert.assertEquals(dashboardPage.getTitle(), "Dashboard - HES");
-        dashboardPage.leftMenu.clickOnMenuSettings();
-        dashboardPage.leftMenu.clickOnSubMenuDevAccessProfiles();
-        deviceAccessProfilesPage.checkIsDeviceAccessProfilesPagePresent();
     }
 
     @Test
     public void deviceAccessProfilesTest() {
+
+        dashboardPage.leftMenu.clickOnMenuEmployees();
+        employeesPage.checkCurrentUrl();
+        employeesPage.clickOnCreateEmployeeButton();
+
+
+        //Profile
+        employeesPage.enterFirstNameInToInputField("Bob");
+        employeesPage.enterLastNameInToInputField("Brown");
+        employeesPage.enterEmailInToInputField("brown@gmail.com");
+        employeesPage.enterPhoneInToInputField("+38-095-520-69-96");
+        employeesPage.clickOnAddCompanyButton();
+        employeesPage.enterCompanyInToInputField("Hideez");
+        employeesPage.clickOnCreateOrgStructureButton();
+        employeesPage.clickOnAddDepartmentButton();
+        employeesPage.enterDepartmentInToInputField("PR");
+        employeesPage.clickOnCreateOrgStructureButton();
+        employeesPage.clickOnAddPositionButton();
+        employeesPage.enterPositionInToInputField("PRManager");
+        employeesPage.clickOnCreateOrgStructureButton();
+        employeesPage.clickOnNextButton();
+
+        //Device
+        employeesPage.clickOnDeviceList();
+        employeesPage.clickOnDeviceId();
+        employeesPage.proximityCheckbox("check");
+        employeesPage.clickOnWorkstationList();
+        employeesPage.clickOnWorkstation();
+        employeesPage.clickOnNextButton();
+
+        //Windows Account
+        employeesPage.clickOnAccountTypeList();
+        employeesPage.selectMicrosoftAccountType();
+        employeesPage.enterAccountUserNameInToInputField("TestUnlockAccount");
+        employeesPage.enterAccountUserPasswordInToInputField("123007");
+        employeesPage.confirmAccountUserPassword("123007");
+        employeesPage.clickOnNextButton();
+
+        //Overview
+        employeesPage.checkIsFullNamePresent();
+        employeesPage.checkIsWindowsAccountPresent();
+        employeesPage.checkIsDeviceIdPresent();
+        employeesPage.checkIsWorkstationIdPresent();
+        employeesPage.clickOnNextButton();
+
+
+        employeesPage.leftMenu.clickOnMenuSettings();
+        employeesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
+        deviceAccessProfilesPage.checkIsDeviceAccessProfilesPagePresent();
 
         //create Profile
         deviceAccessProfilesPage.clickOnCreateProfilesButton();
@@ -72,6 +118,51 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
         deviceAccessProfilesPage.clickOnDropdownMenu();
         deviceAccessProfilesPage.clickOnMenuDelete();
         deviceAccessProfilesPage.clickOnDeleteButton();
+        deviceAccessProfilesPage.leftMenu.clickOnMenuEmployees();
 
+        //Delete Personal Account
+        employeesPage.clickOnDropdownMenuEmployee();
+        employeesPage.clickOnDetailsLink();
+        employeesPage.clickOnDropdownMenuAccount();
+        employeesPage.clickOnDeleteMenuAccount();
+        employeesPage.clickOnDeleteButton();
+
+        //Delete Device
+        employeesPage.clickOnRemoveDeviceButton();
+        employeesPage.clickOnDeleteButton();
+
+        //Delete Employee
+        employeesPage.leftMenu.clickOnMenuDashboard();
+        employeesPage.leftMenu.clickOnMenuEmployees();
+        employeesPage.clickOnDropdownMenuEmployee();
+        employeesPage.clickOnDeleteEmployeeLink();
+        employeesPage.clickOnDeleteButton();
+
+        //Delete Department
+        employeesPage.leftMenu.clickOnMenuSettings();
+        employeesPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.clickOnDropdownMenuDepartment();
+        orgStructurePage.clickOnDeleteMenuDepartment();
+        orgStructurePage.clickOnDeleteButton();
+
+        //Delete Company
+        employeesPage.leftMenu.clickOnMenuSettings();
+        employeesPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.clickOnDropdownMenuCompany();
+        orgStructurePage.clickOnDeleteMenuCompany();
+        orgStructurePage.clickOnDeleteButton();
+
+        //Delete Position
+        orgStructurePage.leftMenu.clickOnMenuSettings();
+        orgStructurePage.leftMenu.clickOnSubMenuPositions();
+        positionsPage.clickOnDropdownMenuPosition();
+        positionsPage.clickOnDeleteMenuPosition();
+        positionsPage.clickOnDeleteButton();
+
+        positionsPage.enterPositionInToSearchField("PRManager");
+        positionsPage.checkIsPositionIsNotPresent();
+        positionsPage.leftMenu.clickOnMenuSettings();
+        positionsPage.leftMenu.clickOnSubMenuOrgStructure();
+        orgStructurePage.checkIsCompanyIsNotPresent();
     }
 }

@@ -57,6 +57,7 @@ public class OrgStructureTest extends AbstractParentTest {
         orgStructurePage.clickOnDropdownMenuDepartment();
         orgStructurePage.clickOnDeleteMenuDepartment();
         orgStructurePage.clickOnDeleteButton();
+        
 
         //Delete Company
         orgStructurePage.clickOnDropdownMenuCompany();

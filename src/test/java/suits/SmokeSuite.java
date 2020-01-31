@@ -1,5 +1,6 @@
 package suits;
 
+import administratorsTest.AdministratorsTest;
 import dataProtectionTest.DataProtectionTest;
 import deviceAccessProfilesTest.DeviceAccessProfilesTest;
 import employeesTest.EmployeesTest;
@@ -17,6 +18,7 @@ import templatesTest.TemplatesTest;
         {
                 NegativeLoginTest.class,
                 LoginTest.class,
+                AdministratorsTest.class,
                 EmployeesTest.class,
                 OrgStructureTest.class,
                 PositionsTest.class,
