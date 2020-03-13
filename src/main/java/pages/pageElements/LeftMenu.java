@@ -1,5 +1,6 @@
 package pages.pageElements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Link;
@@ -29,7 +30,7 @@ public class LeftMenu extends CommonActionWithElements {
     @FindBy(xpath = ".//img[@class='icon-audit i-sidebar']")
     private Link menuAudit;
 
-    @FindBy(xpath = ".//a[@href='/Audit/WorkstationEvents']")
+    @FindBy(xpath = ".//ul[@class='nav nav-pills flex-column expand-pills']//li[@class='nav-item'][1]//a[@class='nav-link']")
     private Link subMenuEvents;
 
     @FindBy(xpath = ".//a[@href='/Audit/WorkstationSessions']")
@@ -47,15 +48,17 @@ public class LeftMenu extends CommonActionWithElements {
     @FindBy(xpath = ".//a[@href='/Settings/DeviceAccessProfiles']")
     private Link subMenuDevAccessProfiles;
 
-    @FindBy(xpath = ".//a[@href='/Settings/OrgStructure']")
+    @FindBy(xpath = ".//ul[@class='nav nav-pills flex-column expand-pills']//li[@class='nav-item'][4]//a[@class='nav-link']")
     private Link subMenuOrgStructure;
 
     @FindBy(xpath = ".//a[@href='/Settings/Positions']")
     private Link subMenuPositions;
 
-    @FindBy (xpath = ".//a[@href='/Settings/DataProtection']")
+    @FindBy(xpath = ".//a[@href='/Settings/DataProtection']")
     private Link subMenuDataProtection;
 
+    @FindBy(xpath = ".//a[@href='/Groups']")
+    private WebElement menuGroups;
 
     public void clickOnMenuDashboard() {
         actionsWithOurElements.clickOnElement(menuDashboard);
@@ -97,6 +100,7 @@ public class LeftMenu extends CommonActionWithElements {
         actionsWithOurElements.clickOnElement(subMenuSummaries);
     }
 
+    @Step
     public void clickOnMenuSettings() {
         actionsWithOurElements.clickOnElement(menuSettings);
     }
@@ -117,5 +121,12 @@ public class LeftMenu extends CommonActionWithElements {
         actionsWithOurElements.clickOnElement(subMenuPositions);
     }
 
-    public  void clickOnSubMenuDataProtection () {actionsWithOurElements.clickOnElement(subMenuDataProtection);}
+    @Step
+    public void clickOnSubMenuDataProtection() {
+        actionsWithOurElements.clickOnElement(subMenuDataProtection);
+    }
+
+    public void clickOnMenuGroups() {
+        actionsWithOurElements.clickOnElement(menuGroups);
+    }
 }

@@ -3,16 +3,16 @@ package libs;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
 
 public class ActionsWithOurElements {
     WebDriver webDriver;
+
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait_10, webDriverWait_15;
 
@@ -37,9 +37,10 @@ public class ActionsWithOurElements {
 
     public void clickOnElement(WebElement webElement) {
         try {
-            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
+            webDriverWait_15.until((ExpectedConditions.visibilityOf(webElement)));
+            webDriverWait_15.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
-            logger.info("Can not work with element ");
+            logger.info("Element was clicked");
         } catch (Exception e) {
             stopTestAndPrintMessage();
         }
@@ -62,8 +63,6 @@ public class ActionsWithOurElements {
     }
 
     public void selectValueFromDropDownList(WebElement dropDown, String itemValue) {
-
-
         try {
             Select dropDownValue = new Select(dropDown);
             dropDownValue.selectByValue(itemValue);
@@ -82,7 +81,6 @@ public class ActionsWithOurElements {
         } catch (Exception e) {
             stopTestAndPrintMessage();
         }
-
     }
 
     public boolean isElementDisplayed(String locator) {
@@ -109,9 +107,8 @@ public class ActionsWithOurElements {
         if (isStateCheck || isStateUnCheck) {
             if ((isStateCheck && isCheckBoxSelected) || (isStateUnCheck && !isCheckBoxSelected)) {
                 logger.info("CheckBox is already needed state");
-            } else if ((isStateCheck && !isCheckBoxSelected) || (isStateUnCheck && isCheckBoxSelected)) {
+            } else {
                 clickOnElement(checkBox);
-
             }
 
         } else {
@@ -148,8 +145,19 @@ public class ActionsWithOurElements {
         }
     }
 
-    public void addSomeWait(int timeInSeconds) {
-            webDriver.manage().timeouts().implicitlyWait(timeInSeconds, TimeUnit.SECONDS);
-        }
-}
+    public void goBackInBrowser() {
+        webDriver.navigate().back();
+    }
 
+    public void openLink(String link) {
+        try {
+            webDriver.get(link);
+        } catch (Exception e) {
+            Assert.fail("can not work with browser");
+        }
+    }
+
+    public void waitUntilElementIsNotDisplayed(String locator) {
+        webDriverWait_15.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+    }
+}

@@ -18,8 +18,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.*;
+import pages.pageElements.DeviceTasksPage;
+import pages.pageElements.WorkstationSessionsPage;
 
-import javax.xml.crypto.Data;
 import java.util.concurrent.TimeUnit;
 
 public class AbstractParentTest {
@@ -33,10 +34,17 @@ public class AbstractParentTest {
     protected SharedAccountsPage sharedAccountsPage;
     protected DeviceAccessProfilesPage deviceAccessProfilesPage;
     protected DevicesPage devicesPage;
-    protected DataProtectionPage dataProtectionPage;
     protected TemplatesPage templatesPage;
+    protected DataProtectionPage dataProtectionPage;
+    protected DeviceTasksPage deviceTasksPage;
+    protected WorkstationSessionsPage workstationSessionsPage;
+    protected WorkstationsPage workstationsPage;
     protected AdministratorsPage administratorsPage;
-
+    protected EventsPage eventsPage;
+    protected SessionsPage sessionsPage;
+    protected SummariesPage summariesPage;
+    protected GroupsPage groupsPage;
+    protected GroupsDetailsPage groupsDetailsPage;
 
     protected static ConfigProperties configProperties =
             ConfigFactory.create(ConfigProperties.class);
@@ -47,10 +55,8 @@ public class AbstractParentTest {
     @Before
     public void setUp() throws Exception {
         webDriver = driverInit();
-
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
         loginPage = new LoginPage(webDriver);
         dashboardPage = new DashboardPage(webDriver);
         employeesPage = new EmployeesPage(webDriver);
@@ -59,10 +65,20 @@ public class AbstractParentTest {
         sharedAccountsPage = new SharedAccountsPage(webDriver);
         deviceAccessProfilesPage = new DeviceAccessProfilesPage(webDriver);
         devicesPage = new DevicesPage(webDriver);
-        dataProtectionPage = new DataProtectionPage (webDriver);
         templatesPage = new TemplatesPage(webDriver);
-        administratorsPage = new AdministratorsPage(webDriver);
-            }
+        dataProtectionPage = new DataProtectionPage(webDriver);
+        deviceTasksPage = new DeviceTasksPage(webDriver);
+        workstationSessionsPage = new WorkstationSessionsPage(webDriver);
+        workstationsPage = new WorkstationsPage(webDriver);
+        administratorsPage = new AdministratorsPage (webDriver);
+        eventsPage = new EventsPage(webDriver);
+        sessionsPage = new SessionsPage(webDriver);
+        summariesPage = new SummariesPage(webDriver);
+        groupsPage = new GroupsPage(webDriver);
+        groupsDetailsPage = new GroupsDetailsPage(webDriver);
+
+
+    }
 
     private WebDriver driverInit() throws Exception {
         String browser = System.getProperty("browser");
@@ -78,8 +94,6 @@ public class AbstractParentTest {
         } else {
             throw new Exception("Check browser var");
         }
-
-
     }
 
     @After

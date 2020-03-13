@@ -25,7 +25,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='Employee.PhoneNumber']")
     private WebElement enterPhone;
 
-    @FindBy(xpath = ".//button[@data-title='Create company']")
+    @FindBy(xpath = ".//div[@class='d-flex']//button[@class='btn btn-success btn-add open-second-modal-dialog']")
     private WebElement addCompany;
 
     @FindBy(xpath = ".//input[@id='Company_Name']")
@@ -34,7 +34,7 @@ public class EmployeesPage extends ParentPage {
     @FindBy(xpath = ".//input[@type='submit' and @value = 'Create']")
     private WebElement buttonCreateOrgStructure;
 
-    @FindBy(xpath = ".//button[@data-action='CreateDepartment']")
+    @FindBy(xpath = ".//div[@class='d-flex']//button[@id='add_position_btn']")
     private WebElement addDepartment;
 
     @FindBy(xpath = ".//input[@id='Department_Name']")
@@ -146,6 +146,9 @@ public class EmployeesPage extends ParentPage {
     private WebElement deleteEmployeeLink;
 
     public LeftMenu leftMenu;
+
+    @FindBy(xpath = ".//div[@id='employees_wrapper']//div[@class='row'][2]//div[@class='col-sm-12']")
+    private WebElement employeesTable;
 
     public EmployeesPage(WebDriver webDriver) {
         super(webDriver, "/Employees");
@@ -381,4 +384,13 @@ public class EmployeesPage extends ParentPage {
         actionsWithOurElements.clickOnElement(dropdownMenuAccount);
     }
 
+    @Step
+    public boolean checkPageOpened() {
+        return actionsWithOurElements.isElementDisplayed(employeesTable);
+    }
+
+    @Step
+    public void clickBack() {
+        actionsWithOurElements.goBackInBrowser();
+    }
 }

@@ -46,11 +46,12 @@ public class LoginPage extends ParentPage {
     @Step
     public void openPage() {
         try {
-            webDriver.get("http://publicdemo.hideez.com");
+            webDriver.get("http://192.168.10.203:80/");
         } catch (Exception e) {
             Assert.fail("can not work with browser");
         }
     }
+
     @Step
     public void enterLoginInToInputLogin(String login) {
         actionsWithOurElements.enterTextInInput(inputLogin, login);
@@ -113,7 +114,13 @@ public class LoginPage extends ParentPage {
         enterPassInToInputPassword(pass);
         clickOnButtonLogIn();
     }
+
+    @Step
+    public void openURL(String url) {
+        try {
+            webDriver.get(url);
+        } catch (Exception e) {
+            Assert.fail("can not work with browser");
+        }
+    }
 }
-
-
-

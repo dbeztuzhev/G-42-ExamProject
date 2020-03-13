@@ -1,31 +1,35 @@
 package suits;
 
+import administratorsTest.AdministratorsTest;
+import authorizationTest.AuthorizationTest;
+import dashboardTest.DashboardTest;
 import dataProtectionTest.DataProtectionTest;
 import deviceAccessProfilesTest.DeviceAccessProfilesTest;
-import employeesTest.EmployeesTest;
+import eventsTest.EventsTest;
 import loginTest.LoginTest;
-import loginTest.NegativeLoginTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import orgStructureTest.OrgStructureTest;
-import positionsTest.PositionsTest;
+import sessionsTest.SessionsTest;
 import sharedAccountsTest.SharedAccountsTest;
+import summariesTest.SummariesSortTest;
 import templatesTest.TemplatesTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
-                NegativeLoginTest.class,
-                LoginTest.class,
-                EmployeesTest.class,
-                OrgStructureTest.class,
-                PositionsTest.class,
-                DeviceAccessProfilesTest.class,
-                SharedAccountsTest.class,
+                AdministratorsTest.class,
+                AuthorizationTest.class,
+                DashboardTest.class,
                 DataProtectionTest.class,
-                TemplatesTest.class
-
+                EventsTest.class,
+                LoginTest.class,
+                SessionsTest.class,
+                SharedAccountsTest.class,
+                SummariesSortTest.class,
+                TemplatesTest.class,
+                DeviceAccessProfilesTest.class
         }
 )
+
 public class SmokeSuite {
 }

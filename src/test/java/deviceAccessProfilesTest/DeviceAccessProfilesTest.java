@@ -1,12 +1,12 @@
 package deviceAccessProfilesTest;
 
 import abstractParentTest.AbstractParentTest;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class DeviceAccessProfilesTest extends AbstractParentTest {
-
 
     @Before
     public void preconditions() {
@@ -24,11 +24,11 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
     }
 
     @Test
-    public void deviceAccessProfilesTest() {
+    public void createDeviceProfile() {
 
-        //create Profile
+        deviceAccessProfilesPage.checkIsDeviceAccessProfilesPagePresent();
         deviceAccessProfilesPage.clickOnCreateProfilesButton();
-        deviceAccessProfilesPage.enterDeviceProfileName("TestProfile");
+        deviceAccessProfilesPage.enterDeviceProfileName("Simple profile");
         deviceAccessProfilesPage.clickOnButtonBondingCheckbox("check");
         deviceAccessProfilesPage.clickOnButtonConnectionCheckbox("check");
         deviceAccessProfilesPage.clickOnButtonNewChannelCheckbox("check");
@@ -37,41 +37,91 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
         deviceAccessProfilesPage.clickOnPinNewChannelCheckbox("check");
         deviceAccessProfilesPage.clickOnServerConfirmConnectionCheckbox("check");
         deviceAccessProfilesPage.clickOnCreateButton();
-        deviceAccessProfilesPage.checkIsCreatedNamePresent();
+        checkExpectedResult("Created DeviceProfile is not displayed",
+                deviceAccessProfilesPage.ifProfilePresent("Simple profile"));
+        deviceAccessProfilesPage.deleteCreatedProfile("Simple profile");
 
-        //edit Profile
+    }
+
+    @Test
+    public void editDeviceProfileName() {
+        deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
+        deviceAccessProfilesPage.filterByNewProfile("Simple profile");
+        deviceAccessProfilesPage.clickOnDropdownMenu();
+        deviceAccessProfilesPage.clickOnMenuEdit();
+        deviceAccessProfilesPage.changeProfileName("Simple profile changed");
+        deviceAccessProfilesPage.clickOnSaveButton();
+        checkExpectedResult("Can't change device profile name",
+                deviceAccessProfilesPage.ifProfilePresent("Simple profile changed"));
+        deviceAccessProfilesPage.deleteCreatedProfile("Simple profile changed");
+    }
+
+    @Test
+    public void editDeviceProfileSettings() {
+        deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
+        deviceAccessProfilesPage.filterByNewProfile("Simple profile");
         deviceAccessProfilesPage.clickOnDropdownMenu();
         deviceAccessProfilesPage.clickOnMenuEdit();
         deviceAccessProfilesPage.clickOnButtonBondingCheckbox("check");
         deviceAccessProfilesPage.clickOnButtonConnectionCheckbox("check");
         deviceAccessProfilesPage.clickOnButtonNewChannelCheckbox("check");
-        deviceAccessProfilesPage.clickOnPinBondingCheckbox("check");
-        deviceAccessProfilesPage.clickOnPinConnectionCheckbox("check");
-        deviceAccessProfilesPage.clickOnPinNewChannelCheckbox("check");
-        deviceAccessProfilesPage.clickOnServerConfirmConnectionCheckbox("check");
         deviceAccessProfilesPage.clickOnSaveButton();
+        deviceAccessProfilesPage.searchProfile("Simple profile");
+        deviceAccessProfilesPage.openProfile();
+        checkExpectedResult("Can't check Button states",
+                deviceAccessProfilesPage.checkButtonStatesForProfile());
+        deviceAccessProfilesPage.clickClose();
+        deviceAccessProfilesPage.deleteCreatedProfile("Simple profile");
+    }
 
-        //Set Profile
+    @Test
+    public void deleteDeviceProfile() {
+        deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
+        deviceAccessProfilesPage.filterByNewProfile("Simple profile");
+        deviceAccessProfilesPage.clickOnDropdownMenu();
+        deviceAccessProfilesPage.clickOnMenuDelete();
+        deviceAccessProfilesPage.clickOnDeleteButton();
+        deviceAccessProfilesPage.searchProfile("Simple profile");
+        checkExpectedResult
+                ("Can't delete the profile", deviceAccessProfilesPage.checkProfileDeleted());
+    }
+
+    @Test
+    public void setProfileOnDevice() {
+        deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
         deviceAccessProfilesPage.leftMenu.clickOnMenuDevices();
-        devicesPage.checkIsDevicesPagePresent();
+        devicesPage.searchSpecifiedDevice("ST10201180907694");
         devicesPage.clickOnDeviceCheckbox("check");
         devicesPage.clickOnSetProfileButton();
         devicesPage.clickOnProfileCheckbox("check");
         devicesPage.clickOnSetButton();
-        devicesPage.checkIsSetProfilePresent();
-
-        //Edit Profile on default
-        devicesPage.clickOnDeviceCheckbox("check");
-        devicesPage.clickOnSetProfileButton();
-        devicesPage.clickOnSetButton();
-        devicesPage.checkIsSetDefaultProfilePresent();
-
-        //Delete Profile
+        devicesPage.searchSpecifiedDevice("ST10201180907694");
+        checkExpectedResult("Can't set new profile for device", devicesPage.isNewProfilePresent("Simple profile"));
+        devicesPage.setDefaultProfileOnDevice("ST10201180907694");
         devicesPage.leftMenu.clickOnMenuSettings();
         devicesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
-        deviceAccessProfilesPage.clickOnDropdownMenu();
-        deviceAccessProfilesPage.clickOnMenuDelete();
-        deviceAccessProfilesPage.clickOnDeleteButton();
+        deviceAccessProfilesPage.deleteCreatedProfile("Simple profile");
+    }
 
+    @Test
+    public void deleteProfileWhenSettedOnDevice() {
+        deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
+        deviceAccessProfilesPage.leftMenu.clickOnMenuDevices();
+        devicesPage.searchSpecifiedDevice("ST10201180907694");
+        devicesPage.clickOnDeviceCheckbox("check");
+        devicesPage.clickOnSetProfileButton();
+        devicesPage.clickOnProfileCheckbox("check");
+        devicesPage.clickOnSetButton();
+        devicesPage.searchSpecifiedDevice("ST10201180907694");
+        devicesPage.leftMenu.clickOnMenuSettings();
+        devicesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
+        deviceAccessProfilesPage.deleteCreatedProfilee("Simple profile");
+        checkExpectedResult("The profile deleted despite requirements", deviceAccessProfilesPage.isAlertDisplayed());
+        deviceAccessProfilesPage.clickClose();
+        deviceAccessProfilesPage.leftMenu.clickOnMenuDevices();
+        devicesPage.setDefaultProfileOnDevice("ST10201180907694");
+        devicesPage.leftMenu.clickOnMenuSettings();
+        devicesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
+        deviceAccessProfilesPage.deleteCreatedProfile("Simple profile");
     }
 }

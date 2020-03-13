@@ -12,6 +12,8 @@ public class TemplatesTest extends AbstractParentTest {
         dashboardPage.checkCurrentUrl();
         dashboardPage.leftMenu.clickOnMenuTemplates();
         templatesPage.checkCurrentUrl();
+        templatesPage.clearAllTemplates();
+
     }
 
     @Test
@@ -171,17 +173,18 @@ public class TemplatesTest extends AbstractParentTest {
         templatesPage.deleteNewTemplate();
     }
 
-    @Test
-    public void showDifferentNumberOfEntries() {
-
-        templatesPage.createTestTemplates(100);
-        templatesPage.chooseTwentyFiveEntries();
-        checkExpectedResult("Can't see the 25th element", templatesPage.ifTwentyFifthElementsPresent());
-        templatesPage.chooseFiftyEntries();
-        checkExpectedResult("Can't see the 50th element", templatesPage.ifFiftyElementsPresent());
-        templatesPage.chooseOneHundredEntries();
-        checkExpectedResult("Can't see the 100th element", templatesPage.ifOneHundredElementsPresent());
-        templatesPage.deleteTestTemplates(100);
-    }
+//    @Test
+//    public void showDifferentNumberOfEntries() {
+//
+//        templatesPage.createTestTemplates(100);
+//        templatesPage.chooseTwentyFiveEntries();
+//        checkExpectedResult("Can't see the 25th element", templatesPage.ifTwentyFifthElementsPresent());
+//        templatesPage.chooseFiftyEntries();
+//        checkExpectedResult("Can't see the 50th element", templatesPage.ifFiftyElementsPresent());
+//        templatesPage.chooseOneHundredEntries();
+//        checkExpectedResult("Can't see the 100th element", templatesPage.ifOneHundredElementsPresent());
+//        templatesPage.deleteTestTemplates(100);
+//    }
 
 }
+
