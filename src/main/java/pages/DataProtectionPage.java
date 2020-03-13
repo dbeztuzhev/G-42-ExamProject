@@ -7,7 +7,7 @@ import parentPage.ParentPage;
 
 public class DataProtectionPage extends ParentPage {
 
-    @FindBy(xpath = ".//a[@class='btn btn-link']")
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
     private WebElement enableDataProtection;
 
     @FindBy(xpath = ".//input[@id='NewPassword_Password']")
@@ -19,10 +19,10 @@ public class DataProtectionPage extends ParentPage {
     @FindBy(xpath = ".//input[@class='btn btn-primary']")
     private WebElement enableButton;
 
-    @FindBy(xpath = ".//a[@class='btn btn-link'][1]//h6")
+    @FindBy(xpath = ".//p[1]//button[@class='btn btn-primary']")
     private WebElement disableDataProtection;
 
-    @FindBy(xpath = ".//a[@class='btn btn-link'][2]")
+    @FindBy(xpath = ".//p[2]//button[@class='btn btn-primary']")
     private WebElement changeEncryptionPassword;
 
     @FindBy(xpath = ".//input[@id='ChangePassword_OldPassword']")
@@ -34,7 +34,7 @@ public class DataProtectionPage extends ParentPage {
     @FindBy(xpath = ".//input[@id='ChangePassword_ConfirmPassword']")
     private WebElement confirmNewPasswordField;
 
-    @FindBy(xpath = ".//input[@class='btn btn-primary']")
+    @FindBy(xpath = ".//div[@id='changeEncryptionPassword']//div[@class='profile-fill-card']//form//div[@class='form-group m-0']//input[@class='btn btn-primary']")
     private WebElement changeDataProtectionButton;
 
     @FindBy(xpath = ".//html//body//div[@class='d-flex']//div[@class='d-flex flex-column custom-main']//div[@class='custom-content p-4']//div[@id='success-alert']")
@@ -43,7 +43,7 @@ public class DataProtectionPage extends ParentPage {
     @FindBy(id = "CurrentPassword_Password")
     private WebElement dataProtectionPasswordField;
 
-    @FindBy(xpath = ".//input[@class='btn btn-danger']")
+    @FindBy(xpath = ".//div[@class='profile-fill-card']//form//div[@class='form-group m-0']//input[@class='btn btn-danger']")
     private WebElement disableButton;
 
     @FindBy(xpath = ".//h1[@class='text-navyblue']")
@@ -76,8 +76,6 @@ public class DataProtectionPage extends ParentPage {
         actionsWithOurElements.isElementDisplayed(enableButton);
         actionsWithOurElements.clickOnElement(enableButton);
     }
-
-
 
     public boolean isDataProtectionEnabled() {
         return actionsWithOurElements.isElementDisplayed(disableDataProtection);
@@ -113,7 +111,7 @@ public class DataProtectionPage extends ParentPage {
     }
 
     public boolean isPasswordChanged() {
-        return actionsWithOurElements.isElementDisplayed(changeEncryptionPassword);
+        return !actionsWithOurElements.isElementDisplayed(changeDataProtectionButton);
     }
 
     public void clickOnDisableDataProtectionButton() {

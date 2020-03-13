@@ -33,6 +33,5 @@ public class AdministratorsTest extends AbstractParentTest {
         administratorsPage.clickOnDeleteItem();
         administratorsPage.clickOnDeleteButton();
         administratorsPage.checkIsDeletedAdminNotPresent();
-
     }
 }

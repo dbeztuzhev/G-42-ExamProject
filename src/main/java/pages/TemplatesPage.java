@@ -8,7 +8,7 @@ import parentPage.ParentPage;
 
 public class TemplatesPage extends ParentPage {
 
-    @FindBy(xpath = ".//div[@class='col-auto p-1'][2]//button[@class='btn btn-primary open-modal-dialog']")
+    @FindBy(xpath = ".//button[@class='btn btn-primary open-modal-dialog']")
     private WebElement createTemplateButton;
     @FindBy(id = "Template_Name")
     private WebElement templateNameField;
@@ -52,24 +52,26 @@ public class TemplatesPage extends ParentPage {
     private WebElement sortByApps;
     @FindBy(xpath = ".//button[@class='btn btn-secondary']")
     private WebElement cancelButton;
-    @FindBy(xpath = ".//div[@class='modal-content']//div[@class='modal-header']//button[@class='close']")
+    @FindBy(xpath = ".//div[@id='modalDialog']//div[@class='modal-dialog modal-dialog-centered']//div[@class='modal-content']/div[@class='modal-header']//button[@class='close']/span")
     private WebElement closeWindowButton;
     @FindBy(xpath = ".//div[@class='modal-content']//div[@class='modal-header']")
     private WebElement createTemplateWindow;
     @FindBy(xpath = ".//div[@id='entries_place']//select[@class='custom-select form-control']")
     private WebElement numberOfEntries;
-    @FindBy(xpath = ".//html//body//div//div[2]//div//div[4]//div[1]//div//select//option[2]")
+    @FindBy(xpath = ".//select[@class='custom-select form-control']//option[2]")
     private WebElement twentyFiveEntries;
-    @FindBy(xpath = ".//table[@id='templates']//tbody//tr[@class='odd'][13]//td[@class='sorting_1']")
+    @FindBy(xpath = ".//tbody//tr[@class='odd'][13]//td[@class='sorting_1']")
     private WebElement twentyFifthElements;
-    @FindBy(xpath = ".//table[@id='templates']//tbody//tr[@class='even'][25]//td[@class='sorting_1']")
+    @FindBy(xpath = ".//tbody//tr[@class='even'][25]//td[@class='sorting_1']")
     private WebElement fiftyElements;
-    @FindBy(xpath = ".//*[@id='entries_place']//select//option[3]")
+    @FindBy(xpath = ".//select[@class='custom-select form-control']//option[3]")
     private WebElement fiftyEntries;
-    @FindBy(xpath = ".//*[@id='entries_place']//select//option[4]")
+    @FindBy(xpath = ".//select[@class='custom-select form-control']//option[4]")
     private WebElement oneHundredEntries;
-    @FindBy (xpath = ".//table[@id='templates']//tbody//tr[@class='even'][50]//td[@class='sorting_1']")
+    @FindBy(xpath = ".//tbody//tr[@class='even'][50]//td[@class='sorting_1']")
     private WebElement oneHundredElements;
+    @FindBy(xpath = ".//table[@id='templates']//tbody//tr[@class='odd']//td[@class='sorting_1']")
+    private WebElement firstTemplateInTheTable;
 
     public TemplatesPage(WebDriver webDriver) {
         super(webDriver, "/Templates");
@@ -156,88 +158,111 @@ public class TemplatesPage extends ParentPage {
     public boolean checkSecondTemplate(String templateName) {
         return actionsWithOurElements.compareValues(actionsWithOurElements.getElementValue(secondString), templateName);
     }
+
     @Step
     public boolean ifElementWereSorted(String firstTemplate, String secondTemplate) {
-        return (checkFirstTemplate(firstTemplate)&&checkSecondTemplate(secondTemplate));
+        return (checkFirstTemplate(firstTemplate) && checkSecondTemplate(secondTemplate));
     }
+
     @Step
     public boolean checkFirstTemplateUrls(String templateUrl) {
         return actionsWithOurElements.compareValues(actionsWithOurElements.getElementValue(firstStringUrl), templateUrl);
     }
+
     @Step
     public boolean checkSecondTemplateUrls(String templateUrl) {
         return actionsWithOurElements.compareValues(actionsWithOurElements.getElementValue(secondStringUrl), templateUrl);
     }
+
     @Step
     public void clickSortByUrls() {
         actionsWithOurElements.clickOnElement(sortByUrls);
     }
+
     @Step
     public boolean checkFirstTemplateApps(String firstTemplateApp) {
         return actionsWithOurElements.compareValues(actionsWithOurElements.getElementValue(firstStringApp), firstTemplateApp);
     }
+
     @Step
     public boolean checkSecondTemplateApps(String secondTemplateApp) {
         return actionsWithOurElements.compareValues(actionsWithOurElements.getElementValue(secondStringApp), secondTemplateApp);
     }
+
     @Step
     public void clickSortByApps() {
         actionsWithOurElements.clickOnElement(sortByApps);
     }
+
     @Step
     public void clickOnCancelButton() {
         actionsWithOurElements.clickOnElement(cancelButton);
     }
+
     @Step
     public void clickOnCloseWindowButton() {
         actionsWithOurElements.clickOnElement(closeWindowButton);
     }
+
     @Step
-    public boolean isCreateTemplateWindowPresent()
-    {
+    public boolean isCreateTemplateWindowPresent() {
         return !(actionsWithOurElements.isElementDisplayed(createTemplateWindow));
     }
+
     @Step
     public void createTestTemplates(int n) {
         for (int i = 0; i < n; i++) {
-
             clickOnCreateTemplateButton();
-            enterNameOfTemplate("template "+i);
+            enterNameOfTemplate("template"+(i+1));
             clickCreate();
         }
     }
+
     @Step
     public void deleteTestTemplates(int m) {
         for (int i = 0; i < m; i++) {
             deleteNewTemplate();
         }
     }
+
     @Step
     public void clickOnNumberOfEntries() {
         actionsWithOurElements.clickOnElement(numberOfEntries);
     }
+
     @Step
     public void chooseTwentyFiveEntries() {
         actionsWithOurElements.clickOnElement(twentyFiveEntries);
     }
+
     @Step
     public boolean ifTwentyFifthElementsPresent() {
         return actionsWithOurElements.isElementDisplayed(twentyFifthElements);
     }
+
     @Step
     public boolean ifFiftyElementsPresent() {
         return actionsWithOurElements.isElementDisplayed(fiftyElements);
     }
+
     @Step
     public void chooseFiftyEntries() {
         actionsWithOurElements.clickOnElement(fiftyEntries);
     }
+
     @Step
     public void chooseOneHundredEntries() {
         actionsWithOurElements.clickOnElement(oneHundredEntries);
     }
+
     @Step
     public boolean ifOneHundredElementsPresent() {
         return actionsWithOurElements.isElementDisplayed(oneHundredElements);
+    }
+
+    public void clearAllTemplates() {
+        while (actionsWithOurElements.isElementDisplayed(firstTemplateInTheTable)) {
+            deleteNewTemplate();
+        }
     }
 }

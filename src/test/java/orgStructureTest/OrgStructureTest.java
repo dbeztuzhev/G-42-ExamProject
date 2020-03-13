@@ -25,12 +25,11 @@ public class OrgStructureTest extends AbstractParentTest {
 
     @Test
     public void orgStructureTest() {
-
-        //Create Company
-        orgStructurePage.clickOnCreateCompanyButton();
-        orgStructurePage.enterCompanyName("Hideez");
-        orgStructurePage.clickOnCreateButton();
-        orgStructurePage.checkIsCompanyNamePresent();
+//        //Create Company
+//        orgStructurePage.clickOnCreateCompanyButton();
+//        orgStructurePage.enterCompanyName("Hideez");
+//        orgStructurePage.clickOnCreateButton();
+//        orgStructurePage.checkIsCompanyNamePresent();
 
         //Edit Company
         orgStructurePage.clickOnDropdownMenuCompany();
@@ -42,14 +41,14 @@ public class OrgStructureTest extends AbstractParentTest {
         //Create Department
         orgStructurePage.clickOnCreateDepartmentButton();
         orgStructurePage.selectCompanyFromList();
-        orgStructurePage.enterDepartmentNameInField("PR");
+        orgStructurePage.enterDepartmentNameInField("PRManager");
         orgStructurePage.clickOnCreateButton();
         orgStructurePage.checkIsDepartmentNamePresent();
 
         //Edit Department
         orgStructurePage.clickOnDropdownMenuDepartment();
         orgStructurePage.clickOnEditMenuDepartment();
-        orgStructurePage.enterDepartmentNameInField("1PR");
+        orgStructurePage.enterDepartmentNameInField("1PRManager");
         orgStructurePage.clickOnSaveNameButton();
         orgStructurePage.checkIsEditedDepartmentNamePresent();
 
@@ -57,7 +56,6 @@ public class OrgStructureTest extends AbstractParentTest {
         orgStructurePage.clickOnDropdownMenuDepartment();
         orgStructurePage.clickOnDeleteMenuDepartment();
         orgStructurePage.clickOnDeleteButton();
-        
 
         //Delete Company
         orgStructurePage.clickOnDropdownMenuCompany();

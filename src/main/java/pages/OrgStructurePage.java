@@ -13,19 +13,19 @@ public class OrgStructurePage extends ParentPage {
     @FindBy(xpath = ".//*[@data-title = 'Create company']")
     private WebElement orgStructureAvatar;
 
-    @FindBy(xpath = ".//div/div[2]/div/div[4]/div[2]/div/table/tbody/tr/td[3]")
+    @FindBy(xpath = ".//table[@id='aac46d03-1840-4770-9a18-39bdfe2ee969']//tbody//tr[@class='odd']//td[3]")
     private WebElement dropdownMenuDepartment;
 
-    @FindBy(xpath = ".//div[@class='dropdown no-arrow show']/div[@class='dropdown-menu dropdown-menu-right shadow animated--fade-in show']/a[@class='dropdown-item open-modal-dialog'][2]")
+    @FindBy(xpath = ".//div[@class='dropdown-menu dropdown-menu-right shadow animated--fade-in show']//a[@class='dropdown-item open-modal-dialog'][2]")
     private WebElement deleteMenuDepartment;
 
-    @FindBy(xpath = ".//input[@value='Delete']")
+    @FindBy(xpath = ".//input[@class='btn btn-danger']")
     private WebElement deleteButton;
 
-    @FindBy(xpath = ".//div/div[2]/div/div[3]/div[2]/div/a/img")
+    @FindBy(xpath = ".//div[@class='col-auto p-1'][2]")
     private WebElement dropdownMenuCompany;
 
-    @FindBy(xpath = ".//div/div[2]/div/div[3]/div[2]/div/div/a[2]")
+    @FindBy(xpath = ".//a[@class='dropdown-item open-modal-dialog'][2]")
     private WebElement deleteMenuCompany;
 
     @FindBy(xpath = ".//button[@data-title='Create company']")
@@ -62,10 +62,12 @@ public class OrgStructurePage extends ParentPage {
         super(webDriver, "/OrgStructure");
     }
 
+    @Step
     public boolean isAvatarDisplayed() {
         return actionsWithOurElements.isElementDisplayed(orgStructureAvatar);
     }
 
+    @Step
     public void checkIsOrgStructurePagePresent() {
         Assert.assertTrue("OrgStructurePage is not displayed", isAvatarDisplayed());
     }
@@ -106,8 +108,8 @@ public class OrgStructurePage extends ParentPage {
     }
 
     @Step
-    public void enterCompanyName(String companyName) {
-        actionsWithOurElements.enterTextInInput(enterCompanyName, companyName);
+    public void enterCompanyName(String employeePhone) {
+        actionsWithOurElements.enterTextInInput(enterCompanyName, employeePhone);
     }
 
     @Step
@@ -152,7 +154,7 @@ public class OrgStructurePage extends ParentPage {
 
     @Step
     public void checkIsDepartmentNamePresent() {
-        Assert.assertTrue("Added Department is not displayed", webDriver.getPageSource().contains("PR"));
+        Assert.assertTrue("Added Department is not displayed", webDriver.getPageSource().contains("PRManager"));
     }
 
     @Step
@@ -162,7 +164,7 @@ public class OrgStructurePage extends ParentPage {
 
     @Step
     public void checkIsEditedDepartmentNamePresent() {
-        Assert.assertTrue("Edited Department is not displayed", webDriver.getPageSource().contains("1PR"));
+        Assert.assertTrue("Edited Department is not displayed", webDriver.getPageSource().contains("1PRManager"));
     }
 
 }
