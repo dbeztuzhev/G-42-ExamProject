@@ -1,7 +1,6 @@
 package deviceAccessProfilesTest;
 
 import abstractParentTest.AbstractParentTest;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,14 +89,16 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
     public void setProfileOnDevice() {
         deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
         deviceAccessProfilesPage.leftMenu.clickOnMenuDevices();
-        devicesPage.searchSpecifiedDevice("ST10201180907694");
-        devicesPage.clickOnDeviceCheckbox("check");
+        devicesPage.searchSpecifiedDevice("ST10202190710000");
+        devicesPage.clickOnDeviceCheckbox();
         devicesPage.clickOnSetProfileButton();
         devicesPage.clickOnProfileCheckbox("check");
         devicesPage.clickOnSetButton();
-        devicesPage.searchSpecifiedDevice("ST10201180907694");
-        checkExpectedResult("Can't set new profile for device", devicesPage.isNewProfilePresent("Simple profile"));
-        devicesPage.setDefaultProfileOnDevice("ST10201180907694");
+        devicesPage.searchSpecifiedDevice("ST10202190710000");
+        devicesPage.clickOnOpenButton();
+        checkExpectedResult("Can't set new profile for device", devicesPage.isNewProfilePresent());
+        devicesPage.clickOnCloseButton();
+        devicesPage.setDefaultProfileOnDevice();
         devicesPage.leftMenu.clickOnMenuSettings();
         devicesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
         deviceAccessProfilesPage.deleteCreatedProfile("Simple profile");
@@ -107,19 +108,19 @@ public class DeviceAccessProfilesTest extends AbstractParentTest {
     public void deleteProfileWhenSettedOnDevice() {
         deviceAccessProfilesPage.createEmptyDeviceProfile("Simple profile");
         deviceAccessProfilesPage.leftMenu.clickOnMenuDevices();
-        devicesPage.searchSpecifiedDevice("ST10201180907694");
-        devicesPage.clickOnDeviceCheckbox("check");
+        devicesPage.searchSpecifiedDevice("ST10202190710000");
+        devicesPage.clickOnDeviceCheckbox();
         devicesPage.clickOnSetProfileButton();
         devicesPage.clickOnProfileCheckbox("check");
         devicesPage.clickOnSetButton();
-        devicesPage.searchSpecifiedDevice("ST10201180907694");
         devicesPage.leftMenu.clickOnMenuSettings();
         devicesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
         deviceAccessProfilesPage.deleteCreatedProfilee("Simple profile");
-        checkExpectedResult("The profile deleted despite requirements", deviceAccessProfilesPage.isAlertDisplayed());
+        checkExpectedResult("Can delete profile when setted on device", deviceAccessProfilesPage.isAlertDisplayed());
         deviceAccessProfilesPage.clickClose();
         deviceAccessProfilesPage.leftMenu.clickOnMenuDevices();
-        devicesPage.setDefaultProfileOnDevice("ST10201180907694");
+        devicesPage.searchSpecifiedDevice("ST10202190710000");
+        devicesPage.setDefaultProfileOnDevice();
         devicesPage.leftMenu.clickOnMenuSettings();
         devicesPage.leftMenu.clickOnSubMenuDevAccessProfiles();
         deviceAccessProfilesPage.deleteCreatedProfile("Simple profile");

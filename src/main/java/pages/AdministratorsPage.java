@@ -18,15 +18,17 @@ public class AdministratorsPage extends ParentPage {
     @FindBy(xpath = ".//input[@value= 'Invite']")
     private WebElement inviteButton;
 
-    @FindBy(xpath = ".//div/div[2]//div//div[3]//div[2]/div//tr[1]/td[5]/div/a/img")
+    @FindBy(xpath = ".//table[@id='users']//tbody//tr[@class='odd']//td[5]")
     private WebElement adminDropdownMenu;
 
-    @FindBy(xpath = ".//div/div[2]/div/div[3]/div[2]/div//tr[1]/td[5]/div/div/a")
+    @FindBy(xpath = ".//tbody//tr[@class='odd']//td[5]//div[@class='dropdown no-arrow show']//div[@class='dropdown-menu dropdown-menu-right shadow animated--fade-in show']//a[@class='dropdown-item open-modal-dialog']")
     private WebElement deleteItem;
 
-    @FindBy (xpath = ".//input[@value='Delete']")
+    @FindBy(xpath = ".//input[@class='btn btn-danger']")
     private WebElement deleteButton;
 
+    @FindBy(xpath = ".//input[@id='searchbox']")
+    private WebElement seacrhBox;
 
     public AdministratorsPage(WebDriver webDriver) {
         super(webDriver, "/Administrators");
@@ -69,8 +71,14 @@ public class AdministratorsPage extends ParentPage {
     public void clickOnDeleteButton() {
         actionsWithOurElements.clickOnElement(deleteButton);
     }
+
     @Step
     public void checkIsDeletedAdminNotPresent() {
         Assert.assertTrue("Created Position is not displayed", !webDriver.getPageSource().contains("admhideeztest@gmail.com"));
+    }
+
+    @Step
+    public void searchSpecifiedAdmin(String adminEmail) {
+        actionsWithOurElements.enterTextInInput(seacrhBox, adminEmail);
     }
 }

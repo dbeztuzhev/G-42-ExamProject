@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import parentPage.ParentPage;
 
@@ -95,6 +96,9 @@ public class GroupsPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='d-flex justify-content-end align-items-center mb-3']//button[@class='btn btn-light m-1 p-1'][1]")
     private WebElement eyeButton;
+
+    @FindBy(xpath = ".//div[@class='modal-content']//div[@class='modal-body']//div[@class='text-right']//button[@class='btn btn-secondary button-min-width']")
+    private WebElement cancelAddingGroupFromADButton;
 
     public GroupsPage(WebDriver webDriver) {
         super(webDriver, "/Groups");
@@ -299,5 +303,29 @@ public class GroupsPage extends ParentPage {
     @Step
     public void clickOnEyeButton() {
         actionsWithOurElements.clickOnElement(eyeButton);
+    }
+
+    @Step
+    public void previouslyDeleteTheGroupIfAvailable(String groupName) {
+        searchInTableGroup(groupName);
+        if (actionsWithOurElements.isElementDisplayed(firstGroupInList)) {
+
+            clickOnFirstGroup();
+            clickDeleteGroupButton();
+            clickDeleteButton();
+        } else {
+            actionsWithOurElements.isElementDisplayed(createGroupButton);
+        }
+    }
+
+    @Step
+    public void clickCancelAddingGroupFromADButton() {
+        actionsWithOurElements.clickOnElement(cancelAddingGroupFromADButton);
+    }
+
+    @Step
+    public void doubleClickOnFirstGroup() {
+        Actions action = new Actions(webDriver);
+        action.moveToElement(webDriver.findElement(By.xpath(".//div[@class='custom-content p-4']//div[@class='table-responsive mb-3']//table[@id='groups']//tbody/tr[@class='table-row ']//td[1]"))).doubleClick().build().perform();
     }
 }

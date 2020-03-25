@@ -1,17 +1,19 @@
-        package pages;
+package pages;
 
-        import io.qameta.allure.Step;
-        import org.junit.Assert;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
-        import org.openqa.selenium.support.FindBy;
-        import pages.pageElements.LeftMenu;
-        import parentPage.ParentPage;
+import io.qameta.allure.Step;
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import pages.pageElements.LeftMenu;
+import parentPage.ParentPage;
 
 public class DashboardPage extends ParentPage {
 
     @FindBy(xpath = ".//li[@class='breadcrumb-item active']")
     private WebElement dashboardAvatar;
+
+    private String url = "http://hesautotest.hideez.com/";
 
     public LeftMenu leftMenu;
 
@@ -57,7 +59,7 @@ public class DashboardPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='card-col'][4]//div[@class='dashboard-card']//div[@class='dashboard-card-body']//div[@class='dashboard-card-wrapper border-right']//div[@class='dashboard-card-info__text font-weight-bold']")
     private WebElement registeredWorkstationsNumber;
 
-    @FindBy(xpath = ".//div[@class='card-col'][4]//div[@class='dashboard-card']//div[@class='dashboard-card-body']//div[@class='dashboard-card-wrapper border-right']//div[@class='dashboard-card-info__title']//a[@class='btn btn-outline-secondary']")
+    @FindBy(xpath = ".//div[@class='card-col'][4]//div[@class='dashboard-card']//div[@class='dashboard-card-body']//div[@class= 'dashboard-card-wrapper border-right']//div[@class='dashboard-card-info__title']//a[@class='btn btn-outline-secondary']")
     private WebElement registeredWorkstationsButton;
 
     @FindBy(xpath = ".//div[@class='card-col'][4]//div[@class='dashboard-card']//div[@class='dashboard-card-body']//div[@class='dashboard-card-wrapper']//div[@class='dashboard-card-info__text']")
@@ -226,113 +228,113 @@ public class DashboardPage extends ParentPage {
 
     @Step
     public void openDeviceLongPendingTasksTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Dashboard/DeviceTasks?handler=LongPending");
+        actionsWithOurElements.openLink(url + "Dashboard/DeviceTasks?handler=LongPending");
     }
 
     @Step
     public boolean checkIfLongPendingTasksNotAvailable() {
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(longPendingTaskButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(longPendingTaskButton);
         }
     }
 
     public void openNonHideezUnlockTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Audit/WorkstationSessions?handler=NonHideezUnlock");
+        actionsWithOurElements.openLink(url + "Audit/WorkstationSessions?handler=NonHideezUnlock");
     }
 
     public boolean checkIfNonHideezUnlockNotAvailable() {
 
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(nonHideezUnlockButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(nonHideezUnlockButton);
         }
     }
 
     @Step
     public void openLowBatteryDevicesTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Devices?handler=LowBattery");
+        actionsWithOurElements.openLink(url + "Devices?handler=LowBattery");
     }
 
     @Step
     public boolean checkIfLowBatteryIndicatorIsTrue() {
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(lowBatteryIndicatorButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(lowBatteryIndicatorButton);
         }
     }
 
     @Step
     public void openDeviceErrorTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Devices?handler=DeviceError/");
+        actionsWithOurElements.openLink(url + "Devices?handler=DeviceError");
     }
 
     @Step
     public boolean checkIfDeviceErrorIndicatorIsTrue() {
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(deviceErrorIndicatorButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(deviceErrorIndicatorButton);
         }
     }
 
     @Step
     public void openLicenseCriticalTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Devices?handler=LicenseCritical");
+        actionsWithOurElements.openLink(url + "Devices?handler=LicenseCritical");
     }
 
     @Step
     public boolean checkIfLicenseCriticalIndicatorIsTrue() {
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(licenseCriticalButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(licenseCriticalButton);
         }
     }
 
     @Step
     public void openLicenseExpiredTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Devices?handler=LicenseExpired");
+        actionsWithOurElements.openLink(url + "Devices?handler=LicenseExpired");
     }
 
     @Step
     public boolean checkIfLicenseExpiredIndicatorIsTrue() {
 
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(licenseExpiredButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(licenseExpiredButton);
         }
     }
 
     @Step
     public void openWaitingForApprovalTable() {
-        actionsWithOurElements.openLink("http://192.168.10.203:80/Workstations?handler=NotApproved");
+        actionsWithOurElements.openLink(url + "Workstations?handler=NotApproved");
     }
 
     @Step
     public boolean checkIfWaitingForApprovalIndicatorIsTrue() {
 
         if (actionsWithOurElements.isElementDisplayed(noDataMessage)) {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return !actionsWithOurElements.isElementDisplayed(waitingForApprovalButton);
         } else {
-            actionsWithOurElements.openLink("http://192.168.10.203:80/");
+            actionsWithOurElements.openLink(url);
             return actionsWithOurElements.isElementDisplayed(waitingForApprovalButton);
         }
     }

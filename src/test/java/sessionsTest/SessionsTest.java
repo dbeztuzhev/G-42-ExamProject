@@ -48,21 +48,21 @@ public class SessionsTest extends AbstractParentTest {
 //        checkExpectedResult("Sort by Unlocked By doesn't work", sessionsPage.ifElementsSorted());
 //    }
 
-    @Test
-    public void sortByWorkstation(){
-        sessionsPage.saveLastDateInList();
-        sessionsPage.clickOnSortByWorkstation();
-        sessionsPage.saveLastDateInListAfterSorting();
-        checkExpectedResult("Sort by workstation doesn't work", sessionsPage.ifElementsSorted());
-    }
+//    @Test
+//    public void sortByWorkstation(){
+//        sessionsPage.saveLastDateInList();
+//        sessionsPage.clickOnSortByWorkstation();
+//        sessionsPage.saveLastDateInListAfterSorting();
+//        checkExpectedResult("Sort by workstation doesn't work", sessionsPage.ifElementsSorted());
+//    }
 
-    @Test
-    public void sortBySession(){
-        sessionsPage.saveLastDateInList();
-        sessionsPage.clickOnSortBySession();
-        sessionsPage.saveLastDateInListAfterSorting();
-        checkExpectedResult("Sort by session doesn't work", sessionsPage.ifElementsSorted());
-    }
+//    @Test
+//    public void sortBySession(){
+//        sessionsPage.saveLastDateInList();
+//        sessionsPage.clickOnSortBySession();
+//        sessionsPage.saveLastDateInListAfterSorting();
+//        checkExpectedResult("Sort by session doesn't work", sessionsPage.ifElementsSorted());
+//    }
 
 //    @Test
 //    public void sortByDevice(){
