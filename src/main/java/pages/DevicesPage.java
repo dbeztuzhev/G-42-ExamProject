@@ -14,9 +14,6 @@ public class DevicesPage extends ParentPage {
     @FindBy(xpath = ".//a[@href='/Devices/Import']")
     private WebElement importButton;
 
-    @FindBy(xpath = ".//tbody//tr[@class='odd']//td[1]//div[@class='custom-control custom-checkbox']")
-    private WebElement deviceCheckbox;
-
     @FindBy(xpath = ".//button[@id='btnProfile']")
     private WebElement setProfile;
 
@@ -31,11 +28,24 @@ public class DevicesPage extends ParentPage {
     @FindBy(xpath = ".//div[@id='content']//div[@id='devices_wrapper']//div[@class='row'][2]//div[@class='col-sm-12']")
     private WebElement devicesTable;
 
-    @FindBy(xpath = ".//div[@class='form-group has-search-right m-0']//input[@id='searchbox']")
+    @FindBy(xpath = ".//input[@id='searchbox']")
     private WebElement searchBox;
 
     @FindBy(xpath = ".//form//div[@class='form-group'][3]//div[@class='custom-control custom-radio'][1]//label[@class='custom-control-label']")
     private WebElement defaultCheckBox;
+
+    @FindBy(xpath = ".//table[@id='devices']//tbody//tr[@class='odd']//td[@class='sorting_1']")
+    private WebElement openButton;
+
+    @FindBy(xpath = ".//tbody//tr[@class='odd']//td[1]//div[@class='custom-control custom-checkbox']")
+    private WebElement deviceCheckbox;
+
+    @FindBy(xpath = ".//table[@id='devices']//tbody//tr[@class='odd parent']//td[@class='sorting_1']")
+    private WebElement closeButton;
+
+    @FindBy(xpath = ".//table[@id='devices']//tbody//tr[@class='odd']//td[1]//div[@class='custom-control custom-checkbox']//label[@class='custom-control-label']")
+    private WebElement checkBox;
+
 
     public DevicesPage(WebDriver webDriver) {
         super(webDriver, "/Devices");
@@ -52,8 +62,9 @@ public class DevicesPage extends ParentPage {
     }
 
     @Step
-    public void clickOnDeviceCheckbox(String expectedState) {
-        actionsWithOurElements.setStateToCheckBox(deviceCheckbox, expectedState);
+    public void clickOnDeviceCheckbox() {
+        actionsWithOurElements.waitUntilElementIsNotDisplayed(".//table[@id='devices']//tbody//tr[@class='even'][5]//td[@class='sorting_1']");
+        actionsWithOurElements.clickOnElement(deviceCheckbox);
     }
 
     @Step
@@ -63,7 +74,7 @@ public class DevicesPage extends ParentPage {
 
     @Step
     public void clickOnProfileCheckbox(String expectedState) {
-        actionsWithOurElements.setStateToCheckBox(profileCheckbox, expectedState);
+        actionsWithOurElements.clickOnElement(profileCheckbox);
     }
 
     @Step
@@ -102,21 +113,42 @@ public class DevicesPage extends ParentPage {
     }
 
     @Step
-    public boolean isNewProfilePresent(String newDeviceProfile) {
-        return actionsWithOurElements.isElementDisplayed(webDriver.findElement(By.xpath("//*[contains(text(),'" + newDeviceProfile + "')]")));
+    public boolean isNewProfilePresent() {
+
+        String newDeviceProfile =
+                actionsWithOurElements.getElementValue(webDriver.findElement(By.xpath(".//table[@id='devices']//tbody//tr[@class='child']//td[@class='child']//ul[@class='dtr-details']//li[2]//span[@class='dtr-data']")));
+        if (newDeviceProfile.equals("Simple profile")) {
+            return true;
+        } else{
+            return false;
+        }
     }
 
     @Step
-    public void setDefaultProfileOnDevice(String serialNumber) {
-        searchSpecifiedDevice(serialNumber);
-        clickOnDeviceCheckbox("check");
+    public void setDefaultProfileOnDevice() {
+        clickOnDeviceCheckbox();
         clickOnSetProfileButton();
         clickOnProfileCheckboxDefault("check");
         clickOnSetButton();
     }
 
     @Step
+    private void clickOnDeviceCheckboxAgain() {
+        actionsWithOurElements.clickOnElement(checkBox);
+    }
+
+    @Step
     public void clickOnProfileCheckboxDefault(String expectedState) {
         actionsWithOurElements.setStateToCheckBox(defaultCheckBox, expectedState);
+    }
+
+    @Step
+    public void clickOnOpenButton() {
+        actionsWithOurElements.clickOnElement(openButton);
+    }
+
+    @Step
+    public void clickOnCloseButton() {
+        actionsWithOurElements.clickOnElement(closeButton);
     }
 }

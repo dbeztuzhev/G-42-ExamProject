@@ -13,6 +13,8 @@ public class LoginPage extends ParentPage {
         super(webDriver, "/Identity/Account/Login?ReturnUrl=%2F");
     }
 
+    public String url = "http://hesautotest.hideez.com/";
+
     @FindBy(xpath = ".//input[@id='Input_Email']")
     private static WebElement inputLogin;
 
@@ -46,7 +48,7 @@ public class LoginPage extends ParentPage {
     @Step
     public void openPage() {
         try {
-            webDriver.get("http://192.168.10.203:80/");
+            webDriver.get(url);
         } catch (Exception e) {
             Assert.fail("can not work with browser");
         }

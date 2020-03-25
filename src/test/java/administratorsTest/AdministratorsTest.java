@@ -29,6 +29,7 @@ public class AdministratorsTest extends AbstractParentTest {
         administratorsPage.clickOnInviteAdminButton();
         administratorsPage.enterEmail("admhideeztest@gmail.com");
         administratorsPage.clickOnInviteButton();
+        administratorsPage.searchSpecifiedAdmin("admhideeztest@gmail.com");
         administratorsPage.clickOnAdminDropdownMenu();
         administratorsPage.clickOnDeleteItem();
         administratorsPage.clickOnDeleteButton();
